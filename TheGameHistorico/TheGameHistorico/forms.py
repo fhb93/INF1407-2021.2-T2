@@ -1,5 +1,9 @@
+from sys import executable
+from django.db import models
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models.fields import reverse_related
+from django.forms import fields
 from django.forms.forms import Form
 from django.http import request
 
@@ -29,27 +33,43 @@ class NewUser(UserCreationForm):
         }), 
         )
 
+class Game(models.Model):
+    BOOL_VALS =((0,'False'), (1, 'True'),)
+    id=models.PositiveBigIntegerField()
+    id.primary_key = True
+    title= models.CharField(max_length=512)
+    developer=models.CharField(max_length=512)
+    publisher=models.CharField(max_length=512)
+    playing=models.IntegerField(choices=BOOL_VALS)
+    mainquest=models.IntegerField(choices=BOOL_VALS)
+    mainquestPlus=models.IntegerField(choices=BOOL_VALS)
+    complete=models.IntegerField(choices=BOOL_VALS)
+
+
 # formulario de cadastro de novo jogo
-class NewGame(forms.ModelForm):
-    # class Meta:
-    #     model=Publisher
+class NewGameForm(forms.ModelForm):
+    class Meta:
+        model=Game
+        fields= []
+        
 
     Titulo_do_jogo = forms.CharField(required=True)
     Desenvolvedor = forms.CharField(required=False)
     Publicador = forms.CharField(required=False)
     # Tempo_de_jogo = forms.TimeField(input_formats='%H:%M:%S')
-    Tempo_de_jogo = forms.TimeField(
+    Tempo_de_jogo = forms.DurationField(
         required=True,  
         label="Tempo de jogo",  
         label_suffix=": ",  
-        initial="00:00:00",  
+        initial="00:00:00",
+        show_hidden_initial=True, 
         # help_text="Digite um tempo total",  
         error_messages = { 
         'required': 'Campo necessário', 
         'invalid': "Campo de tempo inválido", 
         }, 
         disabled=False, 
-        widget=forms.TimeInput(format=TIME_INPUT_FORMATS[0]),
+        widget=forms.TextInput()
     )
 
     Completou_jogo = forms.ChoiceField( 
