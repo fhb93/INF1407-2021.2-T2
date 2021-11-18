@@ -15,9 +15,32 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
+from django.urls.base import reverse_lazy
 from TheGameHistorico import views
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('', views.home, name='homepage'),
+    path('', views.home, name='sec-home'),
+    path('accounts/registro/', views.registraUsuario, name = 'sec-registro'),
+    path('accounts/login/', LoginView.as_view(template_name='registro/login.html'), name='sec-login',),
+    path('accounts/profile/', views.paginaProfile, name='sec-paginaProfile', ),
+    path('accounts/logout/', LogoutView.as_view(next_page=reverse_lazy('sec-home')), name="sec-logout"),
+    path('accounts/trocaSenha/', PasswordChangeView.as_view(template_name='registro/password_change_form.html', success_url = reverse_lazy('sec-passwordDone')), name='sec-passwordChange'),
+    path('accounts/senhaTrocada/', PasswordChangeDoneView.as_view(template_name='registro/password_change_done.html', ), name='sec-passwordDone'),
 ]
+
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     # path('', views.home, name='homepage'),
+#     # path('segundaPagina', views.segundaPagina, name='segunda'),
+#     path('', views.homeSec, name='sec-home'),
+#     path('accounts/registro/', views.registraUsuario, name = 'sec-registro'),
+#     path('accounts/login/', LoginView.as_view(template_name='registro/login.html'), name='sec-login',),
+#     path('accounts/profile/', views.paginaProfile, name='sec-paginaProfile', ),
+#     path('accounts/logout/', LogoutView.as_view(next_page=reverse_lazy('sec-home')), name="sec-logout"),
+#     path('accounts/trocaSenha/', PasswordChangeView.as_view(template_name='registro/password_change_form.html', success_url = reverse_lazy('sec-passwordDone')), name='sec-passwordChange'),
+#     path('accounts/senhaTrocada/', PasswordChangeDoneView.as_view(template_name='registro/password_change_done.html', ), name='sec-passwordDone'),
+# ]
