@@ -8,16 +8,6 @@
     {% csrf_token %}
     <table>
         {{ formularioGame.as_table }}
-        <div class="container">
-            <div class="col-lg-6">
-                <input class="form-check-input" type="radio" id="radio1" name="Quest Principal" value="{{ concluido.id }}">
-                <label for="formularioGame_{{ concluido.id }}"></label>
-                <input class="form-check-input" type="radio" id="radio2" name="Principal + alguns extras" value="{{ concluido.id }}">
-                <label for="formularioGame_{{ concluido.id }}"></label>
-                <input class="form-check-input" type="radio" id="radio3" name="Complecionista" value="{{ concluido.id }}">
-                <label for="formularioGame_{{ concluido.id }}"></label>
-            </div>
-        </div>
     </table>
     <input type="submit" value="Confirmar registro">
 </form>

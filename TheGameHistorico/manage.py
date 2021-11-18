@@ -3,11 +3,16 @@
 import os
 import sys
 
+from TheGameHistorico.db import criaTabela
+
 
 def main():
+    banco = 'db.sqlite3'
+
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'TheGameHistorico.settings')
     try:
+        criaTabela(banco)
         from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(
