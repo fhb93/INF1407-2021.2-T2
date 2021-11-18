@@ -1,8 +1,8 @@
 from django.shortcuts import redirect, render 
 from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
+from TheGameHistorico.forms import NewGame, NewUser
 
-from TheGameHistorico.forms import NewUser
+
  
 # Create your views here. 
  
@@ -18,6 +18,19 @@ def home(request):
 
 def homeSec(request):
     return render(request, 'registro/homeSec.html')
+
+def registraJogo(request):
+    # if request.method == "POST":
+    formulario = NewGame()
+    if formulario.is_valid():
+        formulario.save()
+        return redirect('sec-home')
+    # else:
+    #     formulario = NewGame()
+    
+    contexto = {'formularioGame' : formulario, }
+    return render(request, "jogo/registroGame.html", contexto)
+
 
 def registraUsuario(request):
     if request.method == "POST":
