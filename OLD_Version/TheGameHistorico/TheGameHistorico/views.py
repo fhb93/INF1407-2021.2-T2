@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render 
 from django.http import HttpResponse
 from TheGameHistorico.covercrawler import get_cover
-from TheGameHistorico.forms import NewGameForm, NewUser
+from TheGameHistorico.forms import NewUser
 
 
  
@@ -19,21 +19,6 @@ def home(request):
 
 def homeSec(request):
     return render(request, 'registro/homeSec.html')
-
-def registraJogo(request):
-    if request.method == "POST":
-        formulario = NewGameForm(request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            titulo = formulario.Titulo_do_jogo
-            list = get_cover(titulo)
-            return HttpResponse(str(list)) #redirect('sec-home')
-    else:
-        formulario = NewGameForm()
-
-    
-    contexto = {'formularioGame' : formulario, }
-    return render(request, "jogo/registroGame.html", contexto)
 
 
 def registraUsuario(request):

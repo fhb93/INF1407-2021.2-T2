@@ -13,23 +13,27 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
 from django.urls.base import reverse_lazy
-from TheGameHistorico import views
+
+from TheGameHistorico import Homepage, Jogos, Users
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('', views.home, name='sec-home'),
-    path('accounts/registro/', views.registraUsuario, name = 'sec-registro'),
-    path('accounts/login/', LoginView.as_view(template_name='registro/login.html'), name='sec-login',),
-    path('accounts/profile/', views.paginaProfile, name='sec-paginaProfile', ),
+    path('', Homepage.views.home, name='sec-home'),
+    path('accounts/registro/', Users.views.registraUsuario, name = 'sec-registro'),
+    path('accounts/login/', LoginView.as_view(template_name='../Users/templates/login.html'), name='sec-login',),
+    path('accounts/profile/', Users.views.paginaProfile, name='sec-paginaProfile', ),
     path('accounts/logout/', LogoutView.as_view(next_page=reverse_lazy('sec-home')), name="sec-logout"),
-    path('accounts/trocaSenha/', PasswordChangeView.as_view(template_name='registro/password_change_form.html', success_url = reverse_lazy('sec-passwordDone')), name='sec-passwordChange'),
-    path('accounts/senhaTrocada/', PasswordChangeDoneView.as_view(template_name='registro/password_change_done.html', ), name='sec-passwordDone'),
-    path('jogo/novoJogo/', views.registraJogo, name='registrar-novo-jogo'),
+    path('accounts/trocaSenha/', PasswordChangeView.as_view(template_name='../Users/templates/password_change_form.html', success_url = reverse_lazy('sec-passwordDone')), name='sec-passwordChange'),
+    path('accounts/senhaTrocada/', PasswordChangeDoneView.as_view(template_name='../Users/templates/password_change_done.html', ), name='sec-passwordDone'),
+    path("jogos/", include('jogos.url')),
+    path('jogos/novoJogo/', Jogos.views.registraJogo, name='registrar-novo-jogo'),
+
 ]
 
 

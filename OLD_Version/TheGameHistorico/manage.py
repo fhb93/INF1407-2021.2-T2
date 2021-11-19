@@ -7,8 +7,6 @@ from TheGameHistorico.db import criaTabela
 
 
 def main():
-    banco = '../tgh.db'
-    criaTabela(banco)
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'TheGameHistorico.settings')
     try:

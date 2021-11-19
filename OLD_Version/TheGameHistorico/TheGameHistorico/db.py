@@ -1,7 +1,6 @@
 import sqlite3
 
 
-
 def criaTabela(banco): 
     query1 = """ 
                    CREATE TABLE "usuario" (
