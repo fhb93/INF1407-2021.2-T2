@@ -3,7 +3,7 @@
 {% block titulo %}Incluir novo jogo{% endblock %}
 <!-- Conteúdo da página -->
 {% block conteudo %}
-<form method="post" class="pb-5">
+<form method="post">
     {% csrf_token %}
     <table>
         {{ formularioGame.as_table }}
