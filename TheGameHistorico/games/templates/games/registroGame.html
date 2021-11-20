@@ -1,10 +1,9 @@
-{% extends 'base.html' %}
-
+{% extends 'games/base.html' %}
 <!-- Titulo da página -->
 {% block titulo %}Incluir novo jogo{% endblock %}
 <!-- Conteúdo da página -->
 {% block conteudo %}
-<form method="post">
+<form method="post" class="pb-5">
     {% csrf_token %}
     <table>
         {{ formularioGame.as_table }}

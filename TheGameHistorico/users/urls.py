@@ -29,7 +29,6 @@ urlpatterns = [
     path('accounts/logout/', LogoutView.as_view(next_page=reverse_lazy('sec-home')), name="sec-logout"),
     path('accounts/trocaSenha/', PasswordChangeView.as_view(template_name='users/templates/password_change_form.html', success_url = reverse_lazy('sec-passwordDone')), name='sec-passwordChange'),
     path('accounts/senhaTrocada/', PasswordChangeDoneView.as_view(template_name='users/templates/password_change_done.html', ), name='sec-passwordDone'),
-    # path('games/newGame', games.views.registraJogo, 'registrar-novo-jogo'),
-    
+  
 
 ]
