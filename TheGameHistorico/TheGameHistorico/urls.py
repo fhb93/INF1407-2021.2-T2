@@ -21,7 +21,7 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.home),
+    path('', views.homeSec, name='sec-home'),
     path('admin/', admin.site.urls),
     path("users/", include ('users.urls')),
 ]

@@ -33,7 +33,6 @@ urlpatterns = [
     path('accounts/senhaTrocada/', PasswordChangeDoneView.as_view(template_name='../Users/templates/password_change_done.html', ), name='sec-passwordDone'),
     path("jogos/", include('jogos.url')),
     path('jogos/novoJogo/', Jogos.views.registraJogo, name='registrar-novo-jogo'),
-
 ]
 
 

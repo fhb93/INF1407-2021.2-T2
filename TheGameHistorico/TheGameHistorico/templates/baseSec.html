@@ -1,0 +1,21 @@
+ {% if user.is_authenticated %}
+   	<ul class="list-inline mb-1">
+		<li class="list-inline-item me-4">
+	  		<a class="text-light" href="{% url 'sec-paginaProfile' %}">{% firstof user.username '' %}</a>
+	        </li>
+	        <li class="list-inline-item me-4"></li>
+	            <a href="{% url 'sec-logout' %}">Logout</a>
+	        </li>
+    </ul>
+    <!-- <a href="{% url 'sec-passwordChange' %}">Trocar senha</a> -->
+    {% else %}
+    <div class="list-inline mb-0">
+        <a class="btn btn-primary" href="{% url 'sec-registro' %}">Fazer uma conta</a>
+
+        <a class="btn btn-secondary" href="{% url 'sec-login' %}">Login</a>
+
+        <a class="text-light" href="{% url 'sec-paginaProfile' %}">{% firstof user.username '' %}</a>
+        <!-- <a href="{% url 'sec-registro' %}">Novo usuário?</a> -->
+       <!-- <a href="{% url 'sec-login' %}">Login</a> -->               
+	</div>
+{% endif %}

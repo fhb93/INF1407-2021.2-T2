@@ -14,3 +14,6 @@ from django.http import HttpResponse
 def home(request): 
     return render(request, 'index.html')
     # return HttpResponse('Alô mundo!')
+    
+def homeSec(request):
+    return render(request, 'index.html')
