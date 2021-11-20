@@ -14,8 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, \
+    PasswordChangeDoneView
 from django.urls import path
+from django.urls.base import reverse_lazy
 from django.urls.conf import include
+
+import users
 
 from . import views
 
@@ -24,4 +29,12 @@ urlpatterns = [
     path('', views.homeSec, name='sec-home'),
     path('admin/', admin.site.urls),
     path("users/", include ('users.urls')),
+    path('templates/', views.homeSec, name='nav-bar-home'),
+    path('accounts/users/', users.views.registraUsuario, name = 'sec-registro'),
+    path('accounts/login/', LoginView.as_view(template_name='users/templates/login.html'), name='sec-login',),
+    path('accounts/profile/', users.views.paginaProfile, name='sec-paginaProfile', ),
+    path('accounts/logout/', LogoutView.as_view(next_page=reverse_lazy('sec-home')), name="sec-logout"),
+    path('accounts/trocaSenha/', PasswordChangeView.as_view(template_name='users/templates/password_change_form.html', success_url = reverse_lazy('sec-passwordDone')), name='sec-passwordChange'),
+    path('accounts/senhaTrocada/', PasswordChangeDoneView.as_view(template_name='users/templates/password_change_done.html', ), name='sec-passwordDone'),
+   
 ]

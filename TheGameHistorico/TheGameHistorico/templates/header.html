@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta=charset="utf-8">
+	<meta=language="pt-BR">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">The Game Histórico</a>
+    
+   	<ul class="list-inline mb-0">
+	 {% if user.is_authenticated %}
+	   	
+			<li class="list-inline-item me-0">
+		  		<a class="text-light" href="{% url 'sec-paginaProfile' %}">{% firstof user.username '' %}</a>
+		        </li>
+		        <li class="list-inline-item me-4"></li>
+		            <a href="{% url 'sec-logout' %}">Logout</a>
+		        </li>
+	    <!-- </ul> -->
+	    <!-- <a href="{% url 'sec-passwordChange' %}">Trocar senha</a> -->
+	    {% else %}
+	    <!-- <ul class="list-inline mb-0"> -->
+            <li class="list-inline-item me-1">
+		        <a class="btn btn-primary" href="{% url 'sec-registro' %}">Fazer uma conta</a>
+	         </li>
+             <li class="list-inline-item me-0">
+		        <a class="btn btn-secondary" href="{% url 'sec-login' %}">Login</a>
+            </li>				
+	{% endif %}
+    </ul>
+	</div>        		
+</nav>
+</body>
+</html>
