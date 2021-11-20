@@ -16,7 +16,7 @@
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     </head>
     <body>
-        <h1>Site Seguro (nem tanto, faltou HTTPS)</h1>
+       <!--  <h1>Site Seguro (nem tanto, faltou HTTPS)</h1>
         <a href="/">Homepage do site</a>
         |   <a href="{% url 'sec-home' %}">Homepage de segurança</a>
         {% if user.is_authenticated %}
@@ -27,7 +27,18 @@
             |<a href="{% url 'sec-login' %}">Login</a>
             {% endif %}
         | Você é {% firstof user.username "visitante" %}
-        <hr>
-        {% block conteudo %}{% endblock %}
+        <hr> -->
+        {% include 'header.html' %}
+        <!-- <img src="{% static 'img/bg-retrowave.png' %}" class="masthead"> -->
+        <header class="call-to-action">
+            <section class="position-relative features-icons text-align-left">
+                <div class="container bg-dark text-white">
+                    <!-- <div class="row"> -->
+            {% block conteudo %}{% endblock %}
+                    <!-- </div> -->
+                </div>  
+            </section>
+        </header>
+        {% include 'footer.html' %}
     </body>
 </html>

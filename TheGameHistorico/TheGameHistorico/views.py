@@ -3,8 +3,8 @@ Created on Nov 19, 2021
 
 @author: felipe
 '''
-from django.shortcuts import redirect, render 
-from django.http import HttpResponse
+from django.shortcuts import render 
+# from django.http import HttpResponse
 # from TheGameHistorico.forms import NewUser
 
 

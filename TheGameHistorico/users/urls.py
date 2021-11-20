@@ -5,7 +5,7 @@ Created on Nov 19, 2021
 '''
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.urls.base import reverse_lazy
-from django.urls.conf import path, include 
+from django.urls.conf import path 
 
 from users import views 
 
