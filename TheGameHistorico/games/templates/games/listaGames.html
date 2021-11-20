@@ -9,16 +9,18 @@
     <h3>Sua Lista Pessoal de Jogos</h3> 
     <table> 
         <tr><th>Título</th><th>Desenvolvedor</th><th>Publicadora</th><th>Ações</th></tr> 
-        {% for pessoa in pessoas %} 
+        {% if games %}
+        {% for game in games %} 
             <tr> 
                 <td>{{ game.title }}</td><td>{{game.developer }}</td><td>{{ game.publisher }}</td> 
                 <!-- <td><a href="{% url 'games:atualiza-jogo' pk=game.id %}">Atualizar</a> |  
                     <a href="{% url 'games:apaga-jogo' pk=game.id %}">Excluir</a></td> 
                     -->
            </tr> 
-        {% empty %} 
+        {% endfor %}
+        {% else %}
             <tr><th colspan="5">Ainda não há jogos registrados</th></tr> 
-        {% endfor %} 
+        {% endif %} 
     </table> 
 </body> 
 </html>

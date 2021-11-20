@@ -14,6 +14,6 @@ Não se esqueça de incluir a tag {% load static %}
     color: #FF0000; list-style-type: none; 
 } 
 /* somente th dentro de uma tag da classe th */ 
-.formulario th { 
+.formularioGame th { 
     text-align: right; vertical-align: text-top; 
 }
