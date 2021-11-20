@@ -1,8 +1,12 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.urls.base import reverse_lazy
 from django.views.generic.base import View 
 
-from users.models import Usuario
+import games
+from games.models import Game
 from users.forms import NewUser
+from users.models import Usuario
 
 
 # Create your views here.
@@ -19,13 +23,18 @@ def registraUsuario(request):
         formulario = NewUser(request.POST)
         if formulario.is_valid():
             formulario.save()
-            return redirect('sec-home')
-        
-    else:
-        formulario = NewUser()
-        
-    contexto = {'formulario' : formulario, }
-    return render(request, "users/registro.html", contexto)
+            return redirect('sec-paginaProfile')
+    
+    context = { 'formulario': NewUser, } 
+    
+    return render(request, "users/registro.html", context)
+    # return render("sec-registro")
 
-def paginaProfile(request):
+def paginaProfile(request, game_id):
+    if request.method == "GET":
+        games = Game.objects.all(pk=game_id)
+        context = { 'games': games, } 
+        return render(request,'users/paginaProfile.html', context)     
+        
+    
     return render(request, 'users/paginaProfile.html')

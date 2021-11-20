@@ -26,12 +26,8 @@ def registraJogo(request):
 class GameListView(View): 
     def get(self, request, *args, **kwargs): 
         games = Game.objects.all()
-        print(games) 
-        context = { 'games': games, } 
-        return render( 
-            request,  
-            'games/listaGames.html',  
-            context)
+        context = { 'listaGames': games, } 
+        return render(request,'users/paginaProfile.html', context)
         
         
 class GameCreateView(View): 

@@ -1,5 +1,5 @@
-{% load static %} 
 <!DOCTYPE html> 
+{% load static %} 
 <html> 
 <head> 
 <meta charset="UTF-8"> 
@@ -10,12 +10,9 @@
     <table> 
         <tr><th>Título</th><th>Desenvolvedor</th><th>Publicadora</th><th>Ações</th></tr> 
         {% if games %}
-        {% for game in games %} 
+        {% for g in games %} 
             <tr> 
-                <td>{{ game.title }}</td><td>{{game.developer }}</td><td>{{ game.publisher }}</td> 
-                <!-- <td><a href="{% url 'games:atualiza-jogo' pk=game.id %}">Atualizar</a> |  
-                    <a href="{% url 'games:apaga-jogo' pk=game.id %}">Excluir</a></td> 
-                    -->
+                <td>{{ g.title }}</td><td>{{g.developer}}</td><td>{{ g.publisher }}</td> 
            </tr> 
         {% endfor %}
         {% else %}
