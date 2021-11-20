@@ -15,7 +15,7 @@ class NewGameForm(forms.ModelForm):
         model=games.models.Game
         fields = '__all__'
 
-    # Titulo_do_jogo = forms.CharField(required=True)
+    # Titulo_do_jogo = model.fields[0]#forms.CharField(required=True)
     # Desenvolvedor = forms.CharField(required=False)
     # Publicador = forms.CharField(required=False)
     # # Tempo_de_jogo = forms.TimeField(input_formats='%H:%M:%S')

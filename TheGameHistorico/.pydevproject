@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?eclipse-pydev version="1.0"?><pydev_project>
+        
     <pydev_variables_property name="org.python.pydev.PROJECT_VARIABLE_SUBSTITUTION">
+        <key>env_var:APP_ICON_699</key>
+        <value>../Resources/Eclipse.icns</value>
         <key>DJANGO_MANAGE_LOCATION</key>
         <value>manage.py</value>
+        <key>env_var:TMPDIR</key>
+        <value>/var/folders/36/j7smgb_54h5_8dytr838c6rw0000gn/T/</value>
+        <key>PY</key>
+        <value>39</value>
+        <key>env_var:SHELL</key>
+        <value>/bin/bash</value>
+        <key>env_var:PATH</key>
+        <value>/usr/bin:/bin:/usr/sbin:/sbin</value>
+        <key>env_var:LOGNAME</key>
+        <value>felipe</value>
+        <key>env_var:XPC_SERVICE_NAME</key>
+        <value>org.eclipse.platform.ide.25916</value>
+        <key>env_var:Apple_PubSub_Socket_Render</key>
+        <value>/private/tmp/com.apple.launchd.RDxR0f9cvy/Render</value>
+        <key>env_var:JAVA_STARTED_ON_FIRST_THREAD_699</key>
+        <value>1</value>
+        <key>DJANGO_SETTINGS_MODULE</key>
+        <value>TheGameHistorico.settings</value>
+        <key>env_var:USER</key>
+        <value>felipe</value>
+        <key>env_var:SSH_AUTH_SOCK</key>
+        <value>/private/tmp/com.apple.launchd.NuQe4tsvfd/Listeners</value>
+        <key>env_var:HOME</key>
+        <value>/Users/felipe</value>
+        <key>env_var:XPC_FLAGS</key>
+        <value>0x0</value>
+        <key>env_var:__CF_USER_TEXT_ENCODING</key>
+        <value>0x1F5:0x0:0x0</value>
     </pydev_variables_property>
+        
     <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
+                
         <path>/${PROJECT_DIR_NAME}</path>
+            
     </pydev_pathproperty>
+        
     <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python interpreter</pydev_property>
+        
     <pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">Default</pydev_property>
+    
 </pydev_project>

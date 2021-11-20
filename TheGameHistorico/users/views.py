@@ -30,9 +30,9 @@ def registraUsuario(request):
     return render(request, "users/registro.html", context)
     # return render("sec-registro")
 
-def paginaProfile(request, game_id):
+def paginaProfile(request):
     if request.method == "GET":
-        games = Game.objects.all(pk=game_id)
+        games = Game.objects.all()
         context = { 'games': games, } 
         return render(request,'users/paginaProfile.html', context)     
         

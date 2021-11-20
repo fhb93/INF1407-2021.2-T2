@@ -12,14 +12,16 @@
     
    	<ul class="list-inline mb-0">
 	 {% if user.is_authenticated %}
-			<li class="list-inline-item me-0">
+			<li class="list-inline-item me-4">
 		  		<a class="text-light" href="{% url 'sec-paginaProfile' %}">{% firstof user.username '' %}</a>
 		        </li>
+		      <li class="list-inline-item me-4">  
+			    	<a href="{% url 'sec-passwordChange' %}">Trocar senha</a>
+			   </li>
 		        <li class="list-inline-item me-4"></li>
 		            <a href="{% url 'sec-logout' %}">Logout</a>
 		        </li>
 	    <!-- </ul> -->
-	    <!-- <a href="{% url 'sec-passwordChange' %}">Trocar senha</a> -->
 	    {% else %}
 	    <!-- <ul class="list-inline mb-0"> -->
             <li class="list-inline-item me-1">
