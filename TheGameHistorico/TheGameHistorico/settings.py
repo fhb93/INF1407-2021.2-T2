@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'TheGameHistorico',
     'users',
+    'games',
 ]
 
 MIDDLEWARE = [

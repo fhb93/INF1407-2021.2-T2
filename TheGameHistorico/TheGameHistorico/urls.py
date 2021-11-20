@@ -21,6 +21,7 @@ from django.urls.base import reverse_lazy
 from django.urls.conf import include
 
 import users
+import games
 
 from . import views
 
@@ -29,6 +30,8 @@ urlpatterns = [
     path('', views.homeSec, name='sec-home'),
     path('admin/', admin.site.urls),
     path("users/", include ('users.urls')),
+    path('games/', include('games.urls')),
+    path('templates/games/', games.views.registraJogo, 'registrar-novo-jogo'),
     path('templates/', views.homeSec, name='nav-bar-home'),
     path('accounts/users/', users.views.registraUsuario, name = 'sec-registro'),
     path('accounts/login/', LoginView.as_view(template_name='users/login.html'), name='sec-login',),
@@ -36,5 +39,4 @@ urlpatterns = [
     path('accounts/logout/', LogoutView.as_view(next_page=reverse_lazy('sec-home')), name="sec-logout"),
     path('accounts/trocaSenha/', PasswordChangeView.as_view(template_name='users/templates/password_change_form.html', success_url = reverse_lazy('sec-passwordDone')), name='sec-passwordChange'),
     path('accounts/senhaTrocada/', PasswordChangeDoneView.as_view(template_name='users/templates/password_change_done.html', ), name='sec-passwordDone'),
-   
 ]
