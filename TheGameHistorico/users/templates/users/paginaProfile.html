@@ -4,7 +4,7 @@
 {% block titulo %}Registro de usuário{% endblock %}
 <!-- Conteúdo da página -->
 {% block conteudo %}
-<h2>Perfil do Usuário</h2>
-<p>Se você está vendo esta página é porque você foi autenticado com sucesso</p>
-<a href="{% url 'registrar-novo-jogo' %}">Cadastrar jogo</a>
+<h1>Perfil do Usuário</h1>
+<a class="btn btn-primary" href="{% url 'registrar-novo-jogo' %}">Acrescentar um jogo</a>
+{% include 'games/listaGames.html' %}
 {% endblock %}

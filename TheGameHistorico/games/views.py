@@ -1,7 +1,10 @@
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls.base import reverse_lazy
+from django.views.generic.base import View 
 
 from games.forms import NewGameForm
+from games.models import Game
 
 
 # from games.forms import NewGameForm
@@ -21,3 +24,26 @@ def registraJogo(request):
     
     contexto = {'formularioGame' : formulario, }
     return render(request, "games/registroGame.html", contexto)
+
+
+class GameListView(View): 
+    def get(self, request, *args, **kwargs): 
+        games = Game.objects.all() 
+        context = { 'jogos': games, } 
+        return render( 
+            request,  
+            'games/listaGames.html',  
+            context)
+        
+        
+class GameCreateView(View): 
+    def get(self, request, *args, **kwargs): 
+        context = { 'formulario': NewGameForm, } 
+        return render(request, "games/registroGame.html", context) 
+     
+    def post(self, request, *args, **kwargs): 
+        formulario = NewGameForm(request.POST) 
+        if formulario.is_valid(): 
+            contato = formulario.save() 
+            contato.save() 
+            return HttpResponseRedirect(reverse_lazy("games:lista-jogos")) 

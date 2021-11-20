@@ -32,6 +32,7 @@ urlpatterns = [
     path("users/", include ('users.urls')),
     path('games/', include('games.urls')),
     path('games/adicionarJogo', games.views.registraJogo, name='registrar-novo-jogo'),
+    path('games/listar', games.views.GameListView.as_view(), name='lista-jogos'), 
     path('templates/', views.homeSec, name='nav-bar-home'),
     path('accounts/users/', users.views.registraUsuario, name = 'sec-registro'),
     path('accounts/login/', LoginView.as_view(template_name='users/login.html'), name='sec-login',),
