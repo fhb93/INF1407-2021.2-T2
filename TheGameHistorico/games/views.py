@@ -77,7 +77,7 @@ class GameUpdateView(View):
         if formulario.is_valid(): 
             pessoa = formulario.save() 
             pessoa.save() 
-            return HttpResponseRedirect(reverse_lazy("lista-games")) 
+            return HttpResponseRedirect(reverse_lazy("sec-paginaProfile")) 
         else: 
             context = {'game': formulario, } 
             return render(request, 'games/atualizaGame.html', context)
@@ -88,8 +88,10 @@ class GameDeleteView(View):
         context = {'game': game, } 
         return render(request, 'games/apagaGame.html', context)
     
-    def post(self, request, pk, *args, **kwargs): 
-        game = Game.objects.get(pk=pk) 
-        game.delete() 
-        print("Removendo o jogo", pk) 
-        return HttpResponseRedirect(reverse_lazy("lista-games")) 
+    def post(self, request, pk, *args, **kwargs):
+        if request.POST.get("remove-btn"):
+            game = Game.objects.get(pk=pk)
+            game.delete() 
+            print("Removendo o jogo", pk) 
+            
+        return HttpResponseRedirect(reverse_lazy("sec-paginaProfile")) 

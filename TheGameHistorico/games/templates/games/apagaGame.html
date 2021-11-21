@@ -7,10 +7,7 @@
     </br></br></br> 
     <form method="POST">
          {% csrf_token %} 
-        <button class="btn btn-secondary"> 
-            <a href="{% url 'lista-games' %}"  
-               style="text-decoration: none; color: black;">Cancelar</a> 
-        </button> 
-        <input class="btn btn-primary" type="submit" value="Remover"> 
+         <input class="btn btn-secondary" name="cancela-btn" type="submit" value="Cancelar">
+        <input class="btn btn-primary" name="remove-btn" type="submit" value="Remover"> 
     </form>
 {% endblock %}
