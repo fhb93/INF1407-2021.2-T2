@@ -12,7 +12,10 @@
         {% if games %}
         {% for g in games %} 
             <tr> 
-                <td>{{ g.title }}</td><td>{{g.developer}}</td><td>{{ g.publisher }}</td> 
+                <td>{{ g.title }}</td><td>{{g.developer}}</td><td>{{ g.publisher }}</td>
+                <td><a href="{% url 'atualizar-jogo' pk=g.id %}">Atualizar</a>
+                	<a href="{% url 'remover-jogo' pk=g.id %}">Remover</a>
+                </td> 
            </tr> 
         {% endfor %}
         {% else %}

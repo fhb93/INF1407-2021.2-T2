@@ -18,16 +18,17 @@
     </head>
     <body>
         {% include 'header.html' %}
+        {% block content %}
         <header class="call-to-action">
             <section class="position-relative features-icons text-align-left">
-                <div class="container bg-dark text-white col-xl-5 col-lg-8 col-md-10 col-sm-10 col-10">
-					<h2 class="text-center text-light p-5">Registrar um novo jogo</h2>        
+                <div class="container bg-dark text-white col-xl-5 col-lg-8 col-md-10 col-sm-10 col-10">       
                    <div class="center">
             {% block conteudo %}{% endblock %}
                    </div>
                 </div>  
             </section>
         </header>
+        {% endblock %}
          {% include 'footer.html' %}
     </body>
 </html>

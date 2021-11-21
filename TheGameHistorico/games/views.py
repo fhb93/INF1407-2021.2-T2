@@ -30,12 +30,17 @@ class GameListView(View):
     def get_queryset(self, request):
         return Game.objects.filter(request.username) #.order_by('')
 
+    # def get(self, request, *args, **kwargs): 
+    #     # games = User.objects.get(username='t123').game_set.all() #objects.all()
+    #     games = Game.objects.all() #(self, request)
+    #     context = { 'listaGames': games, } 
+    #     return render(request,'users/paginaProfile.html', context)
+    #
     def get(self, request, *args, **kwargs): 
-        # games = User.objects.get(username='t123').game_set.all() #objects.all()
-        games = self.get_queryset(self, request)
-        context = { 'listaGames': games, } 
-        return render(request,'users/paginaProfile.html', context)
-        
+        game = Game.objects.all() 
+        context = {'game': game, } 
+        return render(request, 'users/paginaProfile.html', context)
+
 
         
 class GameCreateView(View): 
@@ -72,7 +77,19 @@ class GameUpdateView(View):
         if formulario.is_valid(): 
             pessoa = formulario.save() 
             pessoa.save() 
-            return HttpResponseRedirect(reverse_lazy("lista-jogos")) 
+            return HttpResponseRedirect(reverse_lazy("lista-games")) 
         else: 
             context = {'game': formulario, } 
-            return render(request, 'games/atualizaGame.html', context) 
+            return render(request, 'games/atualizaGame.html', context)
+        
+class GameDeleteView(View): 
+    def get(self, request, pk, *args, **kwargs): 
+        game = Game.objects.get(pk=pk) 
+        context = {'game': game, } 
+        return render(request, 'games/apagaGame.html', context)
+    
+    def post(self, request, pk, *args, **kwargs): 
+        game = Game.objects.get(pk=pk) 
+        game.delete() 
+        print("Removendo o jogo", pk) 
+        return HttpResponseRedirect(reverse_lazy("lista-games")) 

@@ -10,7 +10,9 @@ from games import views
 
 app_name='games'
 
-urlpatterns = []
+urlpatterns = [
+    # path('games/atualizaGame')
+    ]
 #
 #     # path('', views.ContatoListView.as_view(),  
 #     #     name='home-jogos'), 
