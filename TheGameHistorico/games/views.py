@@ -1,10 +1,13 @@
+from django.contrib.auth.models import User
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.http.response import HttpResponseRedirect 
-from django.shortcuts import render, get_object_or_404 
+from django.shortcuts import render, get_object_or_404, _get_queryset 
 from django.urls.base import reverse_lazy
 from django.views.generic.base import View 
+
 from games.forms import NewGameForm
 from games.models import Game
+
 # Create your views here.
 def registraJogo(request):
     # return HttpResponse("ola")
@@ -24,11 +27,16 @@ def registraJogo(request):
 
 
 class GameListView(View): 
+    def get_queryset(self, request):
+        return Game.objects.filter(request.username) #.order_by('')
+
     def get(self, request, *args, **kwargs): 
-        games = Game.objects.all()
+        # games = User.objects.get(username='t123').game_set.all() #objects.all()
+        games = self.get_queryset(self, request)
         context = { 'listaGames': games, } 
         return render(request,'users/paginaProfile.html', context)
         
+
         
 class GameCreateView(View): 
     def get(self, request, *args, **kwargs): 
