@@ -3,10 +3,14 @@
 </head>
 <body>
 </body>
-{% block javascript %}
 <script type="text/javascript"> 
 	onload = function () {
 		var elems = document.getElementsByClassName("helptext");
+		var id_fieldset = document.getElementById("id_fieldset");
+		
+		if(!id_fieldset) {
+			return;
+		}
 		for (var i = 0; i < elems.length; i++) {
 			elems[i].style.display = "none";
 		}	 
@@ -33,5 +37,4 @@
 	  }); 
 	} 
 </script>
-{% endblock %}
 </html>
