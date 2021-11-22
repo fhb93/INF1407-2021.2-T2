@@ -1,0 +1,23 @@
+<script type="text/javascript"> 
+	onload = function () { 
+	  document.getElementById('id_username').addEventListener('keyup', function (e) { 
+	    var campoUsername = document.getElementById('id_username'); 
+	    var xmlhttp = new XMLHttpRequest(); 
+	    xmlhttp.open("GET", "{% url 'verificaUsername' %}?username=" + encodeURIComponent(campoUsername.value), true); 
+	    xmlhttp.onreadystatechange = function () { 
+	      if(xmlhttp.status == 200 && xmlhttp.readyState == 4) { 
+	        var resposta = JSON.parse(xmlhttp.responseText); 
+	        if(resposta.existe) { 
+	          campoUsername.style = "border: 1px solid #FF0000"; 
+	          document.getElementById('idMsgErro').replaceChild(document.createTextNode("Usuário já existe"), document.getElementById('idMsgErro').firstChild); 
+	        } 
+	        else { 
+	          campoUsername.style = "border: 1px solid #00FF00"; 
+	          document.getElementById('idMsgErro').replaceChild(document.createTextNode("OK"), document.getElementById('idMsgErro').firstChild); 
+	        } 
+	      } 
+	    }; 
+	    xmlhttp.send(null); 
+	  }); 
+	} 
+</script>

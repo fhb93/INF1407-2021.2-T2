@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.http.response import HttpResponseRedirect 
@@ -8,25 +9,26 @@ from django.views.generic.base import View
 from games.forms import NewGameForm
 from games.models import Game
 
+
 # Create your views here.
-def registraJogo(request):
-    # return HttpResponse("ola")
-    if request.method == "POST":
-        formulario = NewGameForm(request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            titulo = formulario.Titulo_do_jogo
-            # list = get_cover(titulo)
-            return HttpResponse(str(list)) #redirect('sec-home')
-    else:
-        formulario = NewGameForm()
-    
-    
-    contexto = {'formularioGame' : formulario, }
-    return render(request, "games/registroGame.html", contexto)
+# def registraJogo(request):
+#     # return HttpResponse("ola")
+#     if request.method == "POST":
+#         formulario = NewGameForm(request.POST)
+#         if formulario.is_valid():
+#             formulario.save()
+#             titulo = formulario.Titulo_do_jogo
+#             # list = get_cover(titulo)
+#             return HttpResponse(str(list)) #redirect('sec-home')
+#     else:
+#         formulario = NewGameForm()
+#
+#
+#     contexto = {'formularioGame' : formulario, }
+#     return render(request, "games/registroGame.html", contexto)
 
 
-class GameListView(View): 
+class GameListView(LoginRequiredMixin, View): 
     def get_queryset(self, request):
         return Game.objects.filter(request.username) #.order_by('')
 
@@ -37,13 +39,13 @@ class GameListView(View):
     #     return render(request,'users/paginaProfile.html', context)
     #
     def get(self, request, *args, **kwargs): 
-        game = Game.objects.all() 
+        game = Game.objects.get(request.user.username) 
         context = {'game': game, } 
         return render(request, 'users/paginaProfile.html', context)
 
 
         
-class GameCreateView(View): 
+class GameCreateView(LoginRequiredMixin, View): 
     def get(self, request, *args, **kwargs): 
         context = { 'formularioGame': NewGameForm, } 
         return render(request, "games/registroGame.html", context) 
@@ -64,7 +66,7 @@ class GameCreateView(View):
 
         
  
-class GameUpdateView(View): 
+class GameUpdateView(LoginRequiredMixin, View): 
     def get(self, request, pk, *args, **kwargs): 
         game = Game.objects.get(pk=pk) 
         formulario = NewGameForm(instance=game) 
@@ -82,7 +84,7 @@ class GameUpdateView(View):
             context = {'game': formulario, } 
             return render(request, 'games/atualizaGame.html', context)
         
-class GameDeleteView(View): 
+class GameDeleteView(LoginRequiredMixin, View): 
     def get(self, request, pk, *args, **kwargs): 
         game = Game.objects.get(pk=pk) 
         context = {'game': game, } 

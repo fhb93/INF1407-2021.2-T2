@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, \
-    PasswordChangeDoneView
+    PasswordChangeDoneView, PasswordResetView, PasswordResetDoneView, \
+    PasswordResetConfirmView, PasswordResetCompleteView
 from django.urls import path
 from django.urls.base import reverse_lazy
 from django.urls.conf import include
 
-import users
 import games
+import users
 
 from . import views
 
@@ -36,13 +37,34 @@ urlpatterns = [
     path('games/apagarJogo/<int:pk>/', games.views.GameDeleteView.as_view(), name='remover-jogo'),
     path('games/listar/', games.views.GameListView.as_view(), name='lista-games'), 
     path('templates/', views.homeSec, name='nav-bar-home'),
-    path('accounts/users/', users.views.registraUsuario, name = 'sec-registro'),
+    path('accounts/users/', users.views.RegisterNewUserView.as_view(), name = 'sec-registro'),
     path('accounts/login/', LoginView.as_view(template_name='users/login.html'), name='sec-login',),
     # path('accounts/profile/', users.views.paginaProfile, name='sec-paginaProfile', ),
     path('accounts/profile/', users.views.paginaProfile, name='sec-paginaProfile'),
     path('accounts/logout/', LogoutView.as_view(next_page=reverse_lazy('sec-home')), name="sec-logout"),
     path('accounts/trocaSenha/', PasswordChangeView.as_view(template_name='users/password_change_form.html', success_url = reverse_lazy('sec-passwordDone')), name='sec-passwordChange'),
     path('accounts/senhaTrocada/', PasswordChangeDoneView.as_view(template_name='users/password_change_done.html', ), name='sec-passwordDone'),
-
+    
+    path('accounts/password_reset/', PasswordResetView.as_view( 
+           template_name='users/password_reset_form.html',  
+           success_url=reverse_lazy('sec-password_reset_done'), 
+           email_template_name='users/password_reset_email.html', 
+           subject_template_name='users/password_reset_subject.txt', 
+           from_email='felipe@philisoftstudio.com', 
+         ), name='password_reset'), 
+     
+    path('accounts/password_reset_done/', PasswordResetDoneView.as_view( 
+           template_name='users/password_reset_done.html', 
+         ), name='sec-password_reset_done'), 
+     
+    path('accounts/password_reset_confirm/<uidb64>/<token>/',  
+         PasswordResetConfirmView.as_view( 
+           template_name='password_reset_confirm.html',  
+           success_url=reverse_lazy('sec-password_reset_complete'), 
+         ), name='password_reset_confirm'), 
+     
+    path('accounts/password_reset_complete/', PasswordResetCompleteView.as_view( 
+           template_name='users/password_reset_complete.html' 
+         ), name='sec-password_reset_complete'),
 
 ]
