@@ -38,6 +38,8 @@ urlpatterns = [
     path('games/listar/', games.views.GameListView.as_view(), name='lista-games'), 
     path('templates/', views.homeSec, name='nav-bar-home'),
     path('accounts/users/', users.views.RegisterNewUserView.as_view(), name = 'sec-registro'),
+    
+    path('verificaUsername/', users.views.verificaUsername, name='verificaUsername'),
     path('accounts/login/', LoginView.as_view(template_name='users/login.html'), name='sec-login',),
     # path('accounts/profile/', users.views.paginaProfile, name='sec-paginaProfile', ),
     path('accounts/profile/', users.views.paginaProfile, name='sec-paginaProfile'),

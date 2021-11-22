@@ -1,6 +1,5 @@
 {% extends 'users/base.html' %}
 {% load static %}
-{% include 'users/javascript.html' %}
 <!-- Titulo da página -->
 {% block titulo %}Registro de usuário{% endblock %}
 <!-- Conteúdo da página -->
@@ -8,6 +7,8 @@
 <div class="form-text-lg text-white m-0 pb-5">
 	<h2 class="text-white text-center p-5">Cadastro de novos usuários</h2>
 	<p class="text-center fst-italic">Necessário para adicionar jogos e estatísticas</p>
+	<div class="text-center" id='idMsgErro'>&nbsp;</div>
+	<fieldset>
 	<form method="POST">
 	    {% csrf_token %}
 	    <table>
@@ -15,5 +16,6 @@
 	    </table>
 	    <input type="submit" value="Confirmar registro">
 	</form>
+	</fieldset>
 </div>
 {% endblock %}

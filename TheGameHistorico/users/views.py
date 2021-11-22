@@ -2,7 +2,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.http.response import HttpResponseRedirect, JsonResponse
+from django.http.response import HttpResponseRedirect
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls.base import reverse_lazy
 from django.views.generic.base import View 
@@ -18,7 +19,6 @@ from users.models import Usuario
 class RegisterNewUserView(View):
     def get(self, request, *args, **kwargs):
         form = NewUser()
-        self.verificaUsername(request)
         context = {'formulario': form}
         return render(request, 'users/registro.html', context)
     
@@ -37,12 +37,13 @@ class RegisterNewUserView(View):
             context = {'formulario': form}
             return render(request, 'users/registro.html', context)
         return
-    def verificaUsername(self, request): 
-        username = request.GET.get("username", None) 
-        resposta = { 
-            'existe': User.objects.filter(username__iexact=username).exists()
-            } 
-        return JsonResponse(resposta)    
+    
+def verificaUsername(request): 
+    username = request.GET.get('username', None) 
+    resposta = { 
+        'existe': User.objects.filter(username__iexact=username).exists()
+        } 
+    return JsonResponse(resposta)    
     
 class UserListView(View): 
     def get(self, request, *args, **kwargs): 
