@@ -12,7 +12,7 @@ class Bio(models.Model):
         return self.title
 
 class Review(models.Model):
-    review_id = models.AutoField(primary_key=True, default=1, editable=False)
+    review_id = models.AutoField(primary_key=True, default=None, editable=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
     title= models.CharField(max_length=3000)
     content= models.TextField(max_length=150)

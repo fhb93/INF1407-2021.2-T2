@@ -51,7 +51,7 @@ class RegisterNewUserView(View):
             # user = form;
             user = form.save()
             user.save()
-            print(user.username)
+            # print(user.username)
             # print(user.bio)
             
             # print(user.username)

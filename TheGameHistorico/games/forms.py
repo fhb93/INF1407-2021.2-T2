@@ -14,6 +14,7 @@ class NewGameForm(forms.ModelForm):
     class Meta:
         model=games.models.Game
         fields = '__all__'
+        exclude = ('cover_path',)
         
     username = forms
     # Titulo_do_jogo = model.fields[0]#forms.CharField(required=True)

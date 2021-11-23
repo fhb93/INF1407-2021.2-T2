@@ -33,12 +33,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("users/", include ('users.urls')),
     path('games/', include('games.urls')),
+    path('games/listaPublica', games.views.GamePublicListView.as_view(), name='lista-publica-games'),
     path('games/adicionarJogo/', games.views.GameCreateView.as_view(), name='registrar-novo-jogo'),
     path('games/atualizarJogo/<int:pk>/', games.views.GameUpdateView.as_view(), name='atualizar-jogo'),
     path('games/apagarJogo/<int:pk>/', games.views.GameDeleteView.as_view(), name='remover-jogo'),
     path('games/listar/', games.views.GameListView.as_view(), name='lista-games'), 
     path('templates/', views.homeSec, name='nav-bar-home'),
     path('accounts/users/', users.views.RegisterNewUserView.as_view(), name = 'sec-registro'),
+    
     
     path('verificaUsername/', users.views.verificaUsername, name='verificaUsername'),
     path('accounts/login/', LoginView.as_view(template_name='users/login.html'), name='sec-login',), # was LoginView.as_view(template_name='users/login.html', )
