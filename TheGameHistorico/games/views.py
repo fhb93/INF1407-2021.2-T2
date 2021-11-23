@@ -3,7 +3,6 @@ import urllib
 import ssl
 
 
-
 from django.conf import settings
 from django.contrib import sessions
 from django.contrib.auth.decorators import login_required
@@ -15,11 +14,11 @@ from django.shortcuts import render, get_object_or_404, _get_queryset
 from django.urls.base import reverse_lazy
 from django.views.generic.base import View 
 from PIL import Image
+import io
 from games.forms import NewGameForm
 from games.models import Game
 import users
 
-ssl._create_default_https_context = ssl._create_unverified_context
 # Create your views here.
 # def registraJogo(request):
 #     # return HttpResponse("ola")
@@ -58,39 +57,40 @@ def listGames(request):
     return games
 
 
-def cover_crawler(game_title):
-    query1 = game_title
+def cover_crawler(title):
+    ssl._create_default_https_context = ssl._create_unverified_context
+    query1 = title
     query2 = query1.replace(" ", "%20")
-    # out = []
+    output = ''
+    str1 = '<img src="https://vgcollect.com/images/front-box-art/'
+    lenMax = len(str1)
+
     with urllib.request.urlopen("https://vgcollect.com/search/" + query2) as response:
-        html = response.read()
-        seq = re.findall('\[NA\]</a>', str(html))
+        html = str(response.read())
+        # seq = re.findall('\"span2 item-art\"', str(html))
         # print(seq)
         #    for i in range(len(str(html))):
-        f = open(query1 + ".txt", "w")
-        f.write(str(seq))
-        
-        for i in range(0, len(str(html))):
-            if("[NA]</a> - Official Release" == str(html)[i : i + len("[NA]</a> - Official Release")]):
-                input = str(html)[i : i + 1200]
-                # url1 = "https://vgcollect.com/item/"
-                url1 = 'https://vgcollect.com/images/front-box-art/'
-                url2 = '.jpg'
-                
-                try:
-                    index1 = input.index(url1)
-                    index2 = input.index(url2)
-                    # f.write(str(input)[index : len(url1)])
-                    # f.write("\n\n\n\n")
-                    # print(str(input)[index1 : index2 + 4])
-                    picture = Image.open(str(input)[index1 : index2 + 4])
-                    picture.save('static/games/img/' + game_title + url2)
-                    # f.write("\n" + str(input)[index1 : index2 + 4] + "\n\n")
-                    # out.append(str(input)[index1 : index2 + 4])
-                except:
-                    continue
-        f.close()
-    return str('static/games/img/' + game_title + url2)
+        # f.write(str(seq))
+        j = html.find("[NA]")
+        # j = html.find("\"span2 item-art\"")
+        print(j)
+        k = j - 2
+        for i in range(k, len(html) - lenMax):
+            # print(i)
+            if html.find(str1, i, i + lenMax) > 0:
+
+                temp = html[i : i + lenMax + 20]
+                urltest = temp[10 : temp.find(".jpg") + 4]
+               
+                print(urltest)
+
+                picname = urllib.request.urlopen(urltest)
+                file = io.BytesIO(picname.read())
+                im = Image.open(file)
+                output = 'games/static/games/img/'+ query1 + '.jpg'
+                im.save(output)
+                break
+    return '/static/games/img/'+ query1 + '.jpg'
 
         
 class GameCreateView(LoginRequiredMixin, View): 

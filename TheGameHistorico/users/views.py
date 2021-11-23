@@ -115,6 +115,7 @@ class UserUpdateView(View):
                 userTemp = BioForm(request.POST, instance=bio).save(commit=False)
                 userTemp.author = request.user   
                 userTemp.save()
+                print("Testando save de bio")
             except:
                 userTemp = formulario.save(commit=False)
                 userTemp.author = request.user   
