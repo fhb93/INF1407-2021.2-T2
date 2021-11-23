@@ -8,11 +8,11 @@
 <body> 
     <h3>Sua Lista Pessoal de Jogos</h3> 
     <table class="table text-light"> 
-        <tr><th>Título</th><th>Desenvolvedor</th><th>Publicadora</th><th>Ações</th></tr> 
+        <tr><th>Título</th><th>Desenvolvedor</th><th>Publicadora</th><th>Plataforma</th><th>Ações</th></tr> 
         {% if games %}
         {% for g in games %} 
             <tr> 
-                <td>{{ g.title }}</td><td>{{g.developer}}</td><td>{{ g.publisher }}</td>
+                <td>{{ g.title }}</td><td>{{g.developer}}</td><td>{{ g.publisher }}</td><td>{{ g.get_platform_display }}</td>
                 <td><a href="{% url 'atualizar-jogo' pk=g.id %}">Atualizar</a>
                 	<a href="{% url 'remover-jogo' pk=g.id %}">Remover</a>
                 </td> 

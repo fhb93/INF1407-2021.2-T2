@@ -107,18 +107,19 @@ class UserUpdateView(View):
             return HttpResponseRedirect(reverse_lazy("sec-paginaProfile")) 
         
         user = get_object_or_404(User, pk=pk)
+        
         formulario = BioForm(request.POST) 
         # bio = get_object_or_404(Bio, author=user.id)
         if formulario.is_valid(): 
             try:
-                bio = Bio.objects.get(author=user)
+                bio = Bio.objects.get(author=request.user)
                 userTemp = BioForm(request.POST, instance=bio).save(commit=False)
-                userTemp.author = request.user   
+                userTemp.author = user   
                 userTemp.save()
-                print("Testando save de bio")
+                
             except:
                 userTemp = formulario.save(commit=False)
-                userTemp.author = request.user   
+                userTemp.author = user   
                 userTemp.save()
         else: 
             bio = Bio.objects.get(author=user)

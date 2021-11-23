@@ -3,14 +3,15 @@
 {% block conteudo %}
 		<section class="bg-dark text-center col-md-12 col-12 col-xs-12 col-sm-12 col-xl-12">
             <div class="container">
-             <div class="row m-3">
+             <div class="row m-3 text-light">
             {% if game %}
 	  		{% for g in game %}
                     <div class="col-lg-4">
-                            <div class="features-icons-icon d-flex"><img src="{{ g.cover_path }}"></div>
+                            <div class="features-icons-icon"><img src="{{ g.cover_path }}"></div>
                             <h4 class="m-2">{{ g.title }}</h4>
                             <p class="lead mb-0">{{ g.developer }}</p>
                             <p class="lead mb-0">{{ g.publisher }}</p>
+                            <p class="lead mb-0">{{ g.get_platform_display }}</p>
                     </div>
    	  		{% endfor %}
 	  		{% endif %}

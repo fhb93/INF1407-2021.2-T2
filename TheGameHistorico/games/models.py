@@ -23,5 +23,36 @@ class Game(models.Model):
         )
     status=models.CharField(max_length=100, choices = CHOICES, default='opt1')
     cover_path=models.CharField(max_length=254, null=True)
+    PLATS = (
+        ('opt0', 'Unlisted'),
+        ( 'opt1', 'Switch' ),
+        ('opt2', 'Wii U'),
+        ('opt3', 'Wii'),
+        ('opt4', 'GameCube'),
+        ('opt5', 'N64'),
+        ('opt6', 'SNES'),
+        ('opt7', 'NES'),
+        ('opt8' , 'GBA'),
+        ('opt9', 'GBC'),
+        ('opt10', 'GB'),
+        ( 'opt11', 'PS1' ),
+        ( 'opt12', 'PS2' ),
+        ( 'opt13', 'PS3' ),
+        ( 'opt14', 'PS4' ),
+        ( 'opt15', 'PS5' ),
+        ( 'opt16', 'Xbox' ),
+        ( 'opt17', 'Xbox 360' ),
+        ('opt18' , 'Xbox One'),
+        ('opt19' , 'Xbox Series'),
+        ('opt20', 'PSP'),
+        ('opt21', 'PSVita'),
+        ('opt22', 'NDS' ),
+        ('opt23', '3DS'),
+        ('opt24', 'New3DS'),
+        ('opt25', 'Atari 2600'),
+        ('opt26', 'Apple ]['),
+        ('opt27' , 'PC'),
+        )
+    platform = models.CharField(max_length=15, choices = PLATS, default ='opt0')
     # def __str__(self):
     #     return self.title
