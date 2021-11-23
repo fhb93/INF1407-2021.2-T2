@@ -91,7 +91,7 @@ def showUserBio(request):
     try:
         bio = Bio.objects.get(author=request.user.id).content    
     except:
-        print("None")
+        pass
         
     return bio
  
@@ -110,12 +110,15 @@ class UserUpdateView(View):
         formulario = BioForm(request.POST) 
         # bio = get_object_or_404(Bio, author=user.id)
         if formulario.is_valid(): 
-            bio = Bio.objects.get(author=user)
-            userTemp = BioForm(request.POST, instance=bio).save(commit=False)
-            # userTemp = formulario.save(commit=False)
-            userTemp.author = user    
-            userTemp.save()
-                
+            try:
+                bio = Bio.objects.get(author=user)
+                userTemp = BioForm(request.POST, instance=bio).save(commit=False)
+                userTemp.author = request.user   
+                userTemp.save()
+            except:
+                userTemp = formulario.save(commit=False)
+                userTemp.author = request.user   
+                userTemp.save()
         else: 
             bio = Bio.objects.get(author=user)
             formulario = BioForm(instance=bio)

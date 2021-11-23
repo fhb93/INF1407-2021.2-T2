@@ -5,7 +5,7 @@ from django.db import models
 
 
 class Bio(models.Model):
-    bio_id = models.AutoField(primary_key=True, default=1, editable=False)
+    bio_id = models.AutoField(primary_key=True, default=None, editable=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
     content= models.TextField(max_length=150)
     def __str__(self):
