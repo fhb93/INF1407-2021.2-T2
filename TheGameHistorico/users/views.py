@@ -1,35 +1,65 @@
 from django.contrib import messages
+from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
-from django.http.response import HttpResponseRedirect
+from django.contrib.auth.forms import UserCreationForm
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls.base import reverse_lazy
 from django.views.generic.base import View 
-from django.views.generic.edit import UpdateView
+from django.views.generic.detail import SingleObjectTemplateResponseMixin
+from django.views.generic.edit import UpdateView, CreateView, BaseUpdateView
 
+from games import views
 import games
-from games.models import Game
-from users.forms import NewUser
-from users.models import Usuario
+from users.forms import NewUserForm, BioForm
+from users.models import User, Bio
 
 
+# from django.contrib.auth.models import User
+# class MyLoginPage(View):
+#     def post(self, request, *args, **kwargs):
+#         post_data = request.POST
+#         user = authenticate(username=post_data['username'], password=post_data['password'])
+#         print(user)
+#         if user is None:
+#             L.warning('Authentication error wrong credentials')
+#             return HttpResponseRedirect('/')
+#         else:
+#             auth_login(request, user)
+#             L.INFO('Authentication ok')
+#             return HttpResponseRedirect('/')
+#
+#
+#     def get(self, request, *args, **kwargs):
+#         form = LoginForm()
+#         context = {'form': form}
+#         return render(request, 'users/login.html', context )
+#
 # Create your views here.
 class RegisterNewUserView(View):
     def get(self, request, *args, **kwargs):
-        form = NewUser()
-        context = {'formulario': form}
+        # print(Usuario.objects.all())
+        form = NewUserForm()
+        context = {'formulario': form }
         return render(request, 'users/registro.html', context)
     
     def post(self, request, *args, **kwargs):
-        form = NewUser(request.POST)
+        form = NewUserForm(request.POST)
         if form.is_valid():
+            # bio = form.get_bio()
+            # user = form;
             user = form.save()
             user.save()
+            print(user.username)
+            # print(user.bio)
+            
+            # print(user.username)
+            # Usuario.objects.create(username=form.username, password=form.password, email=form.email, bio=form.bio)
+            # user.save()
             # user = form.cleaned_data.get('username')
-            usuario = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for ' + usuario)
+            
+            messages.success(request, 'Account was created for ' + user.username)
             return redirect('sec-paginaProfile')
         else:
             print('Form is not valid')
@@ -47,17 +77,45 @@ def verificaUsername(request):
     
 class UserListView(View): 
     def get(self, request, *args, **kwargs): 
-        usuarios = Usuario.objects.all() 
+        usuarios = User.objects.all() 
         context = { 'users': usuarios, } 
         return render(request, 'users/listaContatos.html', context) 
     
-class MyUpdateView(View): 
-    def get(self, request, pk, *args, **kwargs): 
-        if request.user.id == pk: 
-            return super().get(request, pk, args, kwargs) 
-        else: 
-            return redirect('sec-home')
+# class MyUpdateView(SingleObjectTemplateResponseMixin, BaseUpdateView):
+#     def get(self, request, pk, *args, **kwargs): 
+#         form = BioForm()
+#         context = { 'bioForm' : form } 
+
+def showUserBio(request):
+    bio = None
+    try:
+        bio = Bio.objects.get(author=request.user.id).content    
+    except:
+        print("None")
         
+    return bio
+ 
+class UserUpdateView(View): 
+    def get(self, request, pk, *args, **kwargs): 
+        # user = User.objects.get(pk=pk) 
+       
+        context = {'bioForm': BioForm, } 
+        return render(request, 'users/user_form.html', context) 
+     
+    def post(self, request, pk, *args, **kwargs): 
+        user = get_object_or_404(User, pk=pk) 
+        # bio = get_object_or_404(Bio, author=user.id)
+        formulario = BioForm(request.POST) 
+        if formulario.is_valid(): 
+            userTemp = formulario.save(commit=False) 
+            userTemp.author_id = user.id
+            print(userTemp.content) 
+            userTemp.save()
+            return HttpResponseRedirect(reverse_lazy("sec-paginaProfile")) 
+        else: 
+            context = {'bioForm': formulario, } 
+            return render(request, 'users/user_form.html', context) 
+
 #
 # def registraUsuario(request):
 #     if request.method == 'GET':
@@ -84,8 +142,11 @@ class MyUpdateView(View):
 def paginaProfile(request):
     if request.method == "GET":
         if request.user.is_authenticated == True:
-            games = Game.objects.all()
-            context = { 'games': games, } 
+            # games = Game.objects.all()
+            games = views.listGames(request)
+            bio = showUserBio(request)
+            context = { 'games': games, 'bio' : bio} 
+            print(bio)
             return render(request,'users/paginaProfile.html', context)     
     
     return render(request, 'users/paginaProfile.html')

@@ -20,6 +20,7 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView,
 from django.urls import path
 from django.urls.base import reverse_lazy
 from django.urls.conf import include
+from django.views.generic.edit import UpdateView
 
 import games
 import users
@@ -40,7 +41,7 @@ urlpatterns = [
     path('accounts/users/', users.views.RegisterNewUserView.as_view(), name = 'sec-registro'),
     
     path('verificaUsername/', users.views.verificaUsername, name='verificaUsername'),
-    path('accounts/login/', LoginView.as_view(template_name='users/login.html'), name='sec-login',),
+    path('accounts/login/', LoginView.as_view(template_name='users/login.html'), name='sec-login',), # was LoginView.as_view(template_name='users/login.html', )
     # path('accounts/profile/', users.views.paginaProfile, name='sec-paginaProfile', ),
     path('accounts/profile/', users.views.paginaProfile, name='sec-paginaProfile'),
     path('accounts/logout/', LogoutView.as_view(next_page=reverse_lazy('sec-home')), name="sec-logout"),
@@ -68,5 +69,7 @@ urlpatterns = [
     path('accounts/password_reset_complete/', PasswordResetCompleteView.as_view( 
            template_name='users/password_reset_complete.html' 
          ), name='sec-password_reset_complete'),
-
+    
+    path('accounts/terminaRegistro/<int:pk>/', users.views.UserUpdateView.as_view(), name='sec-completaDadosUsuario'),
+    # path('accounts/profile/', users.views.showUserBio, name='sec-userBio')
 ]

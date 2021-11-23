@@ -1,5 +1,8 @@
+from django.conf import settings
+from django.contrib import sessions
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
+from django.core import exceptions
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.http.response import HttpResponseRedirect 
 from django.shortcuts import render, get_object_or_404, _get_queryset 
@@ -8,6 +11,7 @@ from django.views.generic.base import View
 
 from games.forms import NewGameForm
 from games.models import Game
+import users
 
 
 # Create your views here.
@@ -26,8 +30,6 @@ from games.models import Game
 #
 #     contexto = {'formularioGame' : formulario, }
 #     return render(request, "games/registroGame.html", contexto)
-
-
 class GameListView(LoginRequiredMixin, View): 
     def get_queryset(self, request):
         return Game.objects.filter(request.username) #.order_by('')
@@ -39,14 +41,26 @@ class GameListView(LoginRequiredMixin, View):
     #     return render(request,'users/paginaProfile.html', context)
     #
     def get(self, request, *args, **kwargs): 
-        game = Game.objects.get(request.user.username) 
+        game = Game.objects.filter(usuario_id=request.user.id)
+        
         context = {'game': game, } 
         return render(request, 'users/paginaProfile.html', context)
+
+@login_required
+def listGames(request):
+    games = Game.objects.filter(owner_id=request.user.pk).all()
+    return games
+    
 
 
         
 class GameCreateView(LoginRequiredMixin, View): 
     def get(self, request, *args, **kwargs): 
+        print(request.user.username)
+        try:
+            print(request.user)
+        except:
+            print('não achei')
         context = { 'formularioGame': NewGameForm, } 
         return render(request, "games/registroGame.html", context) 
      
@@ -54,7 +68,11 @@ class GameCreateView(LoginRequiredMixin, View):
         formulario = NewGameForm(request.POST)
          
         if formulario.is_valid(): 
-            game = formulario.save()
+            game = formulario.save(commit=False)
+            game.owner = users.views.User.objects.get(username=request.user.username)
+            # game.usuario_id = request.user
+            # game.usuario_id = Usuario.objects.get(usuario_id=request.user.pk)
+            print(str(game.owner))
             game.save() 
             # Game.objects.create(game)
             return HttpResponseRedirect(reverse_lazy("sec-paginaProfile"))

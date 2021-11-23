@@ -4,6 +4,13 @@
 <!-- Conteúdo da página -->
 {% block conteudo %}
 <h1>Perfil do Usuário</h1>
+<h4>Sobre:</h4>
+<p class="text-light">
+{% if bio %}	
+	{{ bio }}
+{% else %}
+{% endif %}
+</p>
 <a class="btn btn-primary" href="{% url 'registrar-novo-jogo' %}">Acrescentar um jogo</a>
 {% include 'games/listaGames.html' %}
 {% endblock %}

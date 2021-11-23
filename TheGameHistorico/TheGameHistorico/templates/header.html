@@ -15,7 +15,10 @@
 		      <li class="list-inline-item me-4">  
 			    	<a href="{% url 'sec-passwordChange' %}">Trocar senha</a>
 			   </li>
-		        <li class="list-inline-item me-4"></li>
+			   <li class="list-inline-item me-1">
+			   <a  href="{% url 'sec-completaDadosUsuario' pk=user.id %}">Terminar registro</a>
+			   </li>
+		        <li class="list-inline-item me-4">
 		            <a href="{% url 'sec-logout' %}">Logout</a>
 		        </li>
 	    <!-- </ul> -->
