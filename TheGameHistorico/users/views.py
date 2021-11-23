@@ -106,20 +106,24 @@ class UserUpdateView(View):
         if request.POST.get("voltar"):
             return HttpResponseRedirect(reverse_lazy("sec-paginaProfile")) 
         
-        user = get_object_or_404(User, pk=pk) 
-        # bio = get_object_or_404(Bio, author=user.id)
+        user = get_object_or_404(User, pk=pk)
         formulario = BioForm(request.POST) 
+        # bio = get_object_or_404(Bio, author=user.id)
         if formulario.is_valid(): 
-            userTemp = formulario.save(commit=False) 
-            userTemp.author_id = user.id
-            print(userTemp.content) 
+            bio = Bio.objects.get(author=user)
+            userTemp = BioForm(request.POST, instance=bio).save(commit=False)
+            # userTemp = formulario.save(commit=False)
+            userTemp.author = user    
             userTemp.save()
-            return HttpResponseRedirect(reverse_lazy("sec-paginaProfile")) 
+                
         else: 
+            bio = Bio.objects.get(author=user)
+            formulario = BioForm(instance=bio)
             context = {'bioForm': formulario, } 
-            return render(request, 'users/user_form.html', context) 
-
-#
+            return render(request, 'users/user_form.html', context)
+    
+            
+        return HttpResponseRedirect(reverse_lazy("sec-paginaProfile")) 
 # def registraUsuario(request):
 #     if request.method == 'GET':
 #         form = NewUser()
