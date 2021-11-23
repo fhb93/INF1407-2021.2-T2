@@ -4,11 +4,14 @@
 <h2>Complete os seus dados</h2> 
 <form method="post"> 
 {% csrf_token %} 
-<table class="form"> 
+<table class="form">
+ {% csrf_token %} 
 {{ bioForm.as_table }} 
 <tr> 
 <td></td> 
-<td><input type="submit" value="Atualiza"></td> 
+<td><input type="submit" value="Atualiza">
+<input href="{% url 'sec-paginaProfile' %}" type="submit" name="voltar" value="Voltar">
+</td> 
 </tr> 
 </table> 
 </form> 

@@ -102,7 +102,10 @@ class UserUpdateView(View):
         context = {'bioForm': BioForm, } 
         return render(request, 'users/user_form.html', context) 
      
-    def post(self, request, pk, *args, **kwargs): 
+    def post(self, request, pk, *args, **kwargs):
+        if request.POST.get("voltar"):
+            return HttpResponseRedirect(reverse_lazy("sec-paginaProfile")) 
+        
         user = get_object_or_404(User, pk=pk) 
         # bio = get_object_or_404(Bio, author=user.id)
         formulario = BioForm(request.POST) 
