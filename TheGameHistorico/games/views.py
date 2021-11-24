@@ -35,16 +35,7 @@ import users
 #
 #     contexto = {'formularioGame' : formulario, }
 #     return render(request, "games/registroGame.html", contexto)
-class GameListView(LoginRequiredMixin, View): 
-    def get_queryset(self, request):
-        return Game.objects.filter(request.username) #.order_by('')
-
-    # def get(self, request, *args, **kwargs): 
-    #     # games = User.objects.get(username='t123').game_set.all() #objects.all()
-    #     games = Game.objects.all() #(self, request)
-    #     context = { 'listaGames': games, } 
-    #     return render(request,'users/paginaProfile.html', context)
-    #
+class GameListView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs): 
         game = Game.objects.filter(usuario_id=request.user.id)
         
@@ -159,13 +150,14 @@ class GameDeleteView(LoginRequiredMixin, View):
         return HttpResponseRedirect(reverse_lazy("sec-paginaProfile")) 
     
     
-def getGamePublicList():
-    games = Game.objects.all()
-    return games
+# def getGamePublicList():
+#     return games
 
 class GamePublicListView(View):
     def get(self, request, *args, **kwargs): 
-        context = { 'game' : getGamePublicList() }
+        games = Game.objects.all()
+        context = { 'game' : games }
+        # return render(request, 'games/grid.html', context)
         return render(request, 'games/grid.html', context)
         
         

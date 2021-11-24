@@ -33,7 +33,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("users/", include ('users.urls')),
     path('games/', include('games.urls')),
-    path('games/listaPublica', games.views.GamePublicListView.as_view(), name='lista-publica-games'),
+    path('games/listaPublica/', games.views.GamePublicListView.as_view(), name='lista-publica-games'),
     path('games/adicionarJogo/', games.views.GameCreateView.as_view(), name='registrar-novo-jogo'),
     path('games/atualizarJogo/<int:pk>/', games.views.GameUpdateView.as_view(), name='atualizar-jogo'),
     path('games/apagarJogo/<int:pk>/', games.views.GameDeleteView.as_view(), name='remover-jogo'),

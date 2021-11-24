@@ -95,6 +95,7 @@ def showUserBio(request):
         
     return bio
  
+#Completar cadastro (biografia)
 class UserUpdateView(View): 
     def get(self, request, pk, *args, **kwargs): 
         # user = User.objects.get(pk=pk) 

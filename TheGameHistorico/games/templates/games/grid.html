@@ -2,8 +2,9 @@
 {% load static %}
 {% block conteudo %}
 		<section class="bg-dark text-center col-md-12 col-12 col-xs-12 col-sm-12 col-xl-12">
-            <div class="container">
-             <div class="row m-3 text-light">
+		<h4 class="text-light pt-5">Games já adicionados à plataforma</h4>
+            <div class="container pt-5 pb-5">
+             <div class="row text-light">
             {% if game %}
 	  		{% for g in game %}
                     <div class="col-lg-4">
@@ -19,5 +20,4 @@
                 </div>
             </div>
         </section>       
-
 {% endblock %} 

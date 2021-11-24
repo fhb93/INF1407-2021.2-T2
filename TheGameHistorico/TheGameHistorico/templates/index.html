@@ -39,15 +39,15 @@
                             <!-- To make this form functional, sign up at-->
                             <!-- https://startbootstrap.com/solution/contact-forms-->
                             <!-- to get an API token!-->
-                            <form>
- 								<!-- {% csrf_token %} -->
+                            <form method="GET" action={% url 'lista-publica-games' %}>
+ 								{% csrf_token %} 
                                 <!-- Game Title input-->
                                 <div class="row">
 	                                <div class="col">
 	                                    <input class="form-control form-control-lg" id="gameTitle" type="text" placeholder="Título do jogo" data-sb-validations="required,text"/>
 	                                    <div class="invalid-feedback text-white" data-sb-feedback="gameTitle:required">Um título é necessário</div>
                                     </div>
-                                   <div class="col-auto"> <a href="{% url 'lista-publica-games' %}"><button class="btn btn-primary btn-lg">Buscar</button></a></div>
+                                   <div class="col-auto"> <button class="btn btn-primary btn-lg" type="submit">Buscar</button></div>
                                 </div>
                                 <!-- Submit error message-->
                                 <!---->
