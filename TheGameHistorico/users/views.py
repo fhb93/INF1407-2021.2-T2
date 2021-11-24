@@ -73,8 +73,15 @@ def verificaUsername(request):
     resposta = { 
         'existe': User.objects.filter(username__iexact=username).exists()
         } 
-    return JsonResponse(resposta)    
-    
+    return JsonResponse(resposta)   
+
+def exibeCharsRestantes(request):
+    bio = request.GET.get('form', None)
+    resp = {
+        'exibe' : len(str(bio))
+        } 
+    return JsonResponse(resp)
+
 class UserListView(View): 
     def get(self, request, *args, **kwargs): 
         usuarios = User.objects.all() 

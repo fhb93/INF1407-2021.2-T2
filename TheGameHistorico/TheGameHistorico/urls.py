@@ -41,7 +41,7 @@ urlpatterns = [
     path('templates/', views.homeSec, name='nav-bar-home'),
     path('accounts/users/', users.views.RegisterNewUserView.as_view(), name = 'sec-registro'),
     
-    
+    path('exibeCharsRest/', users.views.exibeCharsRestantes, name='exibeCharsRest'),
     path('verificaUsername/', users.views.verificaUsername, name='verificaUsername'),
     path('accounts/login/', LoginView.as_view(template_name='users/login.html'), name='sec-login',), # was LoginView.as_view(template_name='users/login.html', )
     # path('accounts/profile/', users.views.paginaProfile, name='sec-paginaProfile', ),

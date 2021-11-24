@@ -6,7 +6,9 @@
 {% csrf_token %} 
 <table class="form">
  {% csrf_token %} 
-{{ bioForm.as_table }} 
+
+{{ bioForm.as_table }}
+<div class="text-center" id='idCaracteres'>/3000</div> 
 <tr> 
 <td></td> 
 <td><input type="submit" value="Atualiza">

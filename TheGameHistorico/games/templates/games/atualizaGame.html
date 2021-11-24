@@ -4,13 +4,13 @@
 <div class="container bg-dark text-white col-xl-5 col-lg-8 col-md-10 col-sm-10 col-10">       
 	 <div class="center m-4">
 	  <h1>Atualização dos jogos</h1> 
-	  <form method="POST" class='formulario'> 
+	  <form method="POST" class="form-control bg-dark text-light"> 
 	    {% csrf_token %} 
 	    <table> 
 	      {{ game.as_table }} 
 	        <tr> 
 	          <td></td> 
-	          <td><input class="mb-4" type="submit" value="Atualizar"></td> 
+	          <td><input class="mb-2 mt-2 btn btn-primary" type="submit" value="Atualizar"></td> 
 	        </tr> 
 	    </table>
 	  </form> 

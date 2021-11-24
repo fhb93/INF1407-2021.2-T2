@@ -4,14 +4,14 @@
 <!-- Conteúdo da página -->
 {% block conteudo %}
 <div class="container bg-dark text-white col-xl-5 col-lg-8 col-md-10 col-sm-10 col-10">       
-   <div class="center m-4">
+   <div class="center m-0">
 		<h2 class="text-center text-light p-5">Registrar um novo jogo</h2>
-		<form method="post">
+		<form method="POST" class="form-control bg-dark text-light">
 		    {% csrf_token %}
 		    <table>
 		        {{ formularioGame.as_table }}
 		    </table>
-		    <input class="mb-4" type="submit" value="Confirmar registro">
+		    <input class="mb-4 ms-4 mt-4 btn btn-primary" type="submit" value="Confirmar registro">
 		</form>
 	</div>
 </div>

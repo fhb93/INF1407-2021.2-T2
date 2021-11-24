@@ -40,11 +40,10 @@
                             <!-- https://startbootstrap.com/solution/contact-forms-->
                             <!-- to get an API token!-->
                             <form method="GET" action={% url 'lista-publica-games' %}>
- 								{% csrf_token %} 
                                 <!-- Game Title input-->
                                 <div class="row">
 	                                <div class="col">
-	                                    <input class="form-control form-control-lg" id="gameTitle" type="text" placeholder="Título do jogo" data-sb-validations="required,text"/>
+	                                    <input class="form-control form-control-lg" name="gameTitle" type="text" placeholder="Título do jogo" data-sb-validations="required,text"/>
 	                                    <div class="invalid-feedback text-white" data-sb-feedback="gameTitle:required">Um título é necessário</div>
                                     </div>
                                    <div class="col-auto"> <button class="btn btn-primary btn-lg" type="submit">Buscar</button></div>

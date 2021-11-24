@@ -155,9 +155,19 @@ class GameDeleteView(LoginRequiredMixin, View):
 
 class GamePublicListView(View):
     def get(self, request, *args, **kwargs): 
+        gameList = []
         games = Game.objects.all()
-        context = { 'game' : games }
+
+        for e in Game.objects.all():
+            if request.GET.get("gameTitle") in e.title:
+                gameList.append(e)
+
+        if len(gameList) > 0:
+            context = { 'game' : gameList }
+        else:
+            context = { 'game' : games }
+                   
+        return render(request, 'games/grid.html', context)             
         # return render(request, 'games/grid.html', context)
-        return render(request, 'games/grid.html', context)
         
         
