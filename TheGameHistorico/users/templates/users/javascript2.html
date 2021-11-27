@@ -1,0 +1,35 @@
+<html>
+<head>
+</head>
+<body>
+</body>
+<script type="text/javascript"> 
+//Exibe caracteres restantes para bio do usuario
+
+	if(document.getElementById("id_content") != null) {
+
+	  document.getElementById("id_content").addEventListener('keyup', function (e) {
+
+	  	var divTexto = document.getElementById("id_content");
+	  	
+	  	 var xmlhttp = new XMLHttpRequest();
+	   	 xmlhttp.open("GET", "{% url 'exibeCharsRest' %}?id_content=" + encodeURIComponent(divTexto.value), true); 
+	   	 xmlhttp.onload = function () { 
+
+	      if(xmlhttp.status == 200 && xmlhttp.readyState == 4) { 
+	        var resposta = JSON.parse(xmlhttp.responseText); 
+	        console.log(resposta);
+	        if(resposta.exibe) {
+	          document.getElementById("idCaracteres").replaceChild(document.createTextNode(resposta.exibe + " / " + resposta.bio_max), 
+	          document.getElementById("idCaracteres").firstChild);
+	          console.log(resposta);
+
+	       } 
+	      }
+		}; 
+	    xmlhttp.send(null); 
+	  	return;
+	  }); 
+		}   
+</script>
+</html>

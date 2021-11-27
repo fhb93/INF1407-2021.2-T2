@@ -2,13 +2,13 @@
 {% block title %}Registro de Usuário{% endblock %} 
 {% block conteudo %} 
 <h2>Complete os seus dados</h2> 
-<form method="post"> 
+<form method="post" id="formBio"> 
 {% csrf_token %} 
 <table class="form">
  {% csrf_token %} 
 
 {{ bioForm.as_table }}
-<div class="text-center" id='idCaracteres'>/3000</div> 
+<div class="text-center" id='idCaracteres'>150 / 150</div> 
 <tr> 
 <td></td> 
 <td><input type="submit" value="Atualiza">

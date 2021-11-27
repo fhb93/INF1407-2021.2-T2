@@ -12,6 +12,7 @@ from django.views.generic.edit import UpdateView, CreateView, BaseUpdateView
 
 from games import views
 import games
+from users import forms, models
 from users.forms import NewUserForm, BioForm
 from users.models import User, Bio
 
@@ -76,9 +77,12 @@ def verificaUsername(request):
     return JsonResponse(resposta)   
 
 def exibeCharsRestantes(request):
-    bio = request.GET.get('form', None)
+    bio = request.GET.get('id_content', None)
+    # maximo de caracteres possiveis para a Bio
+    bio_max_length = 150
     resp = {
-        'exibe' : len(str(bio))
+        'exibe' : int(bio_max_length - len(bio)), 
+        'bio_max' : bio_max_length,
         } 
     return JsonResponse(resp)
 

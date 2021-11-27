@@ -4,26 +4,7 @@
 <body>
 </body>
 <script type="text/javascript"> 
-	onload = function () {
-		if(document.getElementsByName("form")[0] != null) {
-		  document.getElementsByName("form")[0].addEventListener('keyup', function (e) {
-		  	var divTexto = document.getElementsByName("idCaracteres")[0];
-		  	 var xmlhttp = new XMLHttpRequest();
-		   	 xmlhttp.open("GET", "{% url 'exibeCharsRest' %}?form=" + encodeURIComponent(divTexto.value), true); 
-		   	 xmlhttp.onreadystatechange = function () { 
-		      if(xmlhttp.status == 200 && xmlhttp.readyState == 4) { 
-		        var resposta = JSON.parse(xmlhttp.responseText); 
-		        console.log(resposta.exibe);
-		        if(resposta.exibe > 0) {
-		          document.getElementsByName("idCaracteres")[0].replaceChild(document.createTextNode(resposta), 
-		          document.getElementsByName("idCaracteres")[0].firstChild);
-		          console.log(resposta); 
-		        } 
-		      } 
-		    }; 
-		    xmlhttp.send(null);
-		  });
-		}	 
+	
 		 
 		var elems = document.getElementsByClassName("helptext");
 		var id_fieldset = document.getElementById("id_fieldset");
@@ -31,6 +12,7 @@
 		if(!id_fieldset) {
 			return;
 		}
+
 		for (var i = 0; i < elems.length; i++) {
 			elems[i].style.display = "none";
 		}	 
@@ -51,10 +33,12 @@
 	          document.getElementById('idMsgErro').style = "color: #00FF00"; 
 	          document.getElementById('idMsgErro').replaceChild(document.createTextNode("Username Disponível"), document.getElementById('idMsgErro').firstChild); 
 	        } 
-	      } 
+	      }
 	    }; 
 	    xmlhttp.send(null); 
+	    return;
 	  }); 
-	} 
+
+	  
 </script>
 </html>
