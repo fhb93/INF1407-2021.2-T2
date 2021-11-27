@@ -19,7 +19,7 @@ class Game(models.Model):
     # mainquest=models.IntegerField(choices=BOOL_VALS)
     # mainquestPlus=models.IntegerField(choices=BOOL_VALS)
     # complete=models.IntegerField(choices=BOOL_VALS)
-    time_playing=models.TimeField(default='00:00:00')
+    time_playing=models.TimeField(default='00:00:00', null=True)
     CHOICES = (
         ('opt1','Ainda jogando'),
         ('opt2','Apenas Quest Principal'),
