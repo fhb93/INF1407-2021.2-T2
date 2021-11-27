@@ -1,7 +1,7 @@
+import io
 import re
-import urllib
 import ssl
-
+import urllib
 
 from django.conf import settings
 from django.contrib import sessions
@@ -13,11 +13,12 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, _get_queryset 
 from django.urls.base import reverse_lazy
 from django.views.generic.base import View 
+
 from PIL import Image
-import io
 from games.forms import NewGameForm
 from games.models import Game
 import users
+
 
 # Create your views here.
 # def registraJogo(request):
