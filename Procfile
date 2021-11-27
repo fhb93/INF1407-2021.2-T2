@@ -1,1 +1,1 @@
-web: gunicorn TheGameHistorico.wsgi --log-file -
+web: gunicorn TheGameHistorico/TheGameHistorico/wsgi.py  --log-file -
