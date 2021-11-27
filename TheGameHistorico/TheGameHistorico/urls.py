@@ -20,6 +20,7 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView,
 from django.urls import path
 from django.urls.base import reverse_lazy
 from django.urls.conf import include
+from django.views.generic.base import RedirectView
 from django.views.generic.edit import UpdateView
 
 import games
@@ -49,7 +50,7 @@ urlpatterns = [
     path('accounts/logout/', LogoutView.as_view(next_page=reverse_lazy('sec-home')), name="sec-logout"),
     path('accounts/trocaSenha/', PasswordChangeView.as_view(template_name='users/password_change_form.html', success_url = reverse_lazy('sec-passwordDone')), name='sec-passwordChange'),
     path('accounts/senhaTrocada/', PasswordChangeDoneView.as_view(template_name='users/password_change_done.html', ), name='sec-passwordDone'),
-    
+    path('favicon.ico', RedirectView.as_view(url='static/favicon.ico')),
     path('accounts/password_reset/', PasswordResetView.as_view( 
            template_name='users/password_reset_form.html',  
            success_url=reverse_lazy('sec-password_reset_done'), 
