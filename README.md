@@ -36,4 +36,5 @@ Usuários não cadastrados podem apenas fazer buscas e visualizar os games e dad
 
 ### O que não foi desenvolvido
 - Sistema de Resenhas
+	- Usuários com cadastro podem publicar e atualizar notas e resenhas de jogos públicas (visitantes podem visualizar)
 - Estatísticas anonimizados gerais para visitantes
