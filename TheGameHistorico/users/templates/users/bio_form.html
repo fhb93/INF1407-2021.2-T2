@@ -8,11 +8,13 @@
  {% csrf_token %} 
 
 {{ bioForm.as_table }}
-<div class="text-center" id='idCaracteres'>150 / 150</div> 
-<tr> 
+
+<tr>
 <td></td> 
-<td><input type="submit" value="Atualiza">
-<input href="{% url 'sec-paginaProfile' %}" type="submit" name="voltar" value="Voltar">
+<td>
+<div class="text-end" id='idCaracteres'>150 / 150</div> 
+<input type="submit" class="btn btn-primary" value="OK">
+<input href="{% url 'sec-paginaProfile' %}" type="submit" class="btn btn-secondary" name="voltar" value="Voltar">
 </td> 
 </tr> 
 </table> 

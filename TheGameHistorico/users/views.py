@@ -112,7 +112,7 @@ class UserUpdateView(View):
         # user = User.objects.get(pk=pk) 
        
         context = {'bioForm': BioForm, } 
-        return render(request, 'users/user_form.html', context) 
+        return render(request, 'users/bio_form.html', context) 
      
     def post(self, request, pk, *args, **kwargs):
         if request.POST.get("voltar"):
