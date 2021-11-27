@@ -36,4 +36,4 @@ Usuários não cadastrados podem apenas fazer buscas e visualizar os games e dad
 
 ### O que não foi desenvolvido
 - Sistema de Resenhas
-- Estatísticas anonimizados gerais par visitantes
+- Estatísticas anonimizados gerais para visitantes
