@@ -131,7 +131,7 @@ class GameUpdateView(LoginRequiredMixin, View):
         return render(request, 'games/atualizaGame.html', context) 
      
     def post(self, request, pk, *args, **kwargs): 
-        if request.POST.get("cancela-btn") == False:
+        if request.POST.get("ok"):
             pessoa = get_object_or_404(Game, pk=pk) 
             formulario = NewGameForm(request.POST, instance=pessoa) 
             if formulario.is_valid(): 
@@ -142,7 +142,8 @@ class GameUpdateView(LoginRequiredMixin, View):
             else: 
                 context = {'game': formulario, } 
                 return render(request, 'games/atualizaGame.html', context)
-        
+        else:
+            pass
         return HttpResponseRedirect(reverse_lazy("sec-paginaProfile"))
         
 class GameDeleteView(LoginRequiredMixin, View): 
