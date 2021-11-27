@@ -10,7 +10,7 @@ from django.http.response import HttpResponseRedirect
 
 
 # from django.http import HttpResponse
-# from TheGameHistorico.forms import NewUser
+# from thegamehistorico.forms import NewUser
 # Create your views here. 
 def home(request): 
     return render(request, 'index.html')

@@ -12,8 +12,8 @@ from users.models import Bio
 
 
 # from django.contrib.auth.models import User
-# from TheGameHistorico.models import Game
-# from TheGameHistorico.settings import TIME_INPUT_FORMATS
+# from thegamehistorico.models import Game
+# from thegamehistorico.settings import TIME_INPUT_FORMATS
 class BioForm(forms.ModelForm):
     class Meta:
         model = Bio

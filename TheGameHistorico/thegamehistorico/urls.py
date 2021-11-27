@@ -1,4 +1,4 @@
-"""TheGameHistorico URL Configuration
+"""thegamehistorico URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -25,8 +25,7 @@ from django.views.generic.edit import UpdateView
 
 import games
 import users
-
-from . import views
+thegamehistoricofrom . import views
 
 
 urlpatterns = [
