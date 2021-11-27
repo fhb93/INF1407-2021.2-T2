@@ -138,3 +138,10 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND =  'django.core.mail.backends.console.EmailBackend'
+
+# Configure Django App for Heroku. 
+try: 
+    import django_heroku 
+    django_heroku.settings(locals()) 
+except: 
+    pass
