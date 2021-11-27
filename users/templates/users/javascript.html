@@ -4,41 +4,41 @@
 <body>
 </body>
 <script type="text/javascript"> 
-	
 		 
-		var elems = document.getElementsByClassName("helptext");
-		var id_fieldset = document.getElementById("id_fieldset");
-		
-		if(!id_fieldset) {
-			return;
-		}
-
-		for (var i = 0; i < elems.length; i++) {
-			elems[i].style.display = "none";
-		}	 
-	  document.getElementById('id_username').addEventListener('keyup', function (e) { 
-	    var campoUsername = document.getElementById('id_username'); 
-	    var xmlhttp = new XMLHttpRequest(); 
-	    xmlhttp.open("GET", "{% url 'verificaUsername' %}?username=" + encodeURIComponent(campoUsername.value), true); 
-	    xmlhttp.onreadystatechange = function () { 
-	      if(xmlhttp.status == 200 && xmlhttp.readyState == 4) { 
-	        var resposta = JSON.parse(xmlhttp.responseText); 
-	        if(resposta.existe) { 
-	          campoUsername.style = "border: 4px solid #FF0000";
-	          document.getElementById('idMsgErro').style = "color: #FF0000"; 
-	          document.getElementById('idMsgErro').replaceChild(document.createTextNode("Usuário já existe"), document.getElementById('idMsgErro').firstChild); 
-	        } 
-	        else { 
-	          campoUsername.style = "border: 4px solid #00FF00";
-	          document.getElementById('idMsgErro').style = "color: #00FF00"; 
-	          document.getElementById('idMsgErro').replaceChild(document.createTextNode("Username Disponível"), document.getElementById('idMsgErro').firstChild); 
-	        } 
-	      }
-	    }; 
-	    xmlhttp.send(null); 
-	    return;
-	  }); 
-
+	var elems = document.getElementsByClassName("helptext");
+	var fieldset = document.getElementById("id_fieldset");
+	
+	var path = window.location.pathname;
+	
+	if( path == "/accounts/users/" )
+	{
+	
+	for (var i = 0; i < elems.length; i++) {
+		elems[i].style.display = "none";
+	}	 
+	  
+  document.getElementById('id_username').addEventListener('keyup', function (e) { 
+    var campoUsername = document.getElementById('id_username'); 
+    var xmlhttp = new XMLHttpRequest(); 
+    xmlhttp.open("GET", "{% url 'verificaUsername' %}?username=" + encodeURIComponent(campoUsername.value), true); 
+    xmlhttp.onreadystatechange = function () { 
+      if(xmlhttp.status == 200 && xmlhttp.readyState == 4) { 
+        var resposta = JSON.parse(xmlhttp.responseText); 
+        if(resposta.existe) { 
+          campoUsername.style = "border: 4px solid #FF0000";
+          document.getElementById('idMsgErro').style = "color: #FF0000"; 
+          document.getElementById('idMsgErro').replaceChild(document.createTextNode("Usuário já existe"), document.getElementById('idMsgErro').firstChild); 
+        } 
+        else { 
+          campoUsername.style = "border: 4px solid #00FF00";
+          document.getElementById('idMsgErro').style = "color: #00FF00"; 
+          document.getElementById('idMsgErro').replaceChild(document.createTextNode("Username Disponível"), document.getElementById('idMsgErro').firstChild); 
+        } 
+      }
+    }; 
+    xmlhttp.send(null); 
+  }); 
+}
 	  
 </script>
 </html>

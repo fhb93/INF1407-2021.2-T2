@@ -19,7 +19,7 @@ class Game(models.Model):
     # mainquest=models.IntegerField(choices=BOOL_VALS)
     # mainquestPlus=models.IntegerField(choices=BOOL_VALS)
     # complete=models.IntegerField(choices=BOOL_VALS)
-    time_playing=models.TimeField(default='00:00:00', null=True)
+    time_playing=models.TimeField(default='00:00:00', null=True, blank=True)
     CHOICES = (
         ('opt1','Ainda jogando'),
         ('opt2','Apenas Quest Principal'),
@@ -28,11 +28,11 @@ class Game(models.Model):
         )
 
     
-    status=models.CharField(max_length=100, choices = CHOICES, default='opt1', null=True)
+    status=models.CharField(max_length=100, choices = CHOICES, default='opt1', null=True, blank=True)
     
-    time_completion = models.DateField(default= django.utils.timezone.now, null=True)
+    time_completion = models.DateField(default= django.utils.timezone.now, null=True, blank=True)
     
-    cover_path=models.CharField(max_length=254, null=True)
+    cover_path=models.CharField(max_length=254, null=True, blank=True)
     PLATS = (
         ('opt0', 'Unlisted'),
         ( 'opt1', 'Switch' ),
@@ -63,6 +63,6 @@ class Game(models.Model):
         ('opt26', 'Apple ]['),
         ('opt27' , 'PC'),
         )
-    platform = models.CharField(max_length=15, choices = PLATS, default ='opt0')
+    platform = models.CharField(max_length=15, choices = PLATS, default ='opt0', null=True, blank=True)
     # def __str__(self):
     #     return self.title

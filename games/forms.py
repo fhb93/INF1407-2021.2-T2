@@ -15,6 +15,7 @@ class NewGameForm(forms.ModelForm):
         model=games.models.Game
         fields = '__all__'
         exclude = ('cover_path',)
+        
         labels = {
             "title" : "Título",
             "developer" : "Desenvolvedor",

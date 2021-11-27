@@ -98,7 +98,8 @@ class GameCreateView(LoginRequiredMixin, View):
      
     def post(self, request, *args, **kwargs): 
         formulario = NewGameForm(request.POST)
-         
+        
+        print(formulario)
         if formulario.is_valid(): 
             game = formulario.save(commit=False)
             game.owner = users.views.User.objects.get(username=request.user.username)
@@ -107,13 +108,18 @@ class GameCreateView(LoginRequiredMixin, View):
             # print(str(game.owner))
             game.cover_path = cover_crawler(game.title)
             game.save() 
-            # Game.objects.create(game)
-            return HttpResponseRedirect(reverse_lazy("sec-paginaProfile"))
         else:
-            formulario = NewGameForm()
+            context = { 'formularioGame': NewGameForm, } 
+            return render(request, "games/registroGame.html", context)
+            # Game.objects.create(game)
+            # return HttpResponseRedirect(reverse_lazy("sec-paginaProfile"))
+        # else:
         
-        contexto = {'formularioGame' : formulario, }
-        return render(request, "users/paginaProfile.html", contexto)
+        return HttpResponseRedirect(reverse_lazy("sec-paginaProfile")) 
+            # formulario = NewGameForm()
+        
+        # contexto = {'formularioGame' : formulario, }
+        # return render(request, "users/paginaProfile.html", contexto)
 
         
  
