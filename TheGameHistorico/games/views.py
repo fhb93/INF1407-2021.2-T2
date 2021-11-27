@@ -64,7 +64,7 @@ def cover_crawler(title):
         # f.write(str(seq))
         j = html.find("[NA]")
         # j = html.find("\"span2 item-art\"")
-        print(j)
+        # print(j)
         k = j - 2
         for i in range(k, len(html) - lenMax):
             # print(i)
@@ -73,7 +73,7 @@ def cover_crawler(title):
                 temp = html[i : i + lenMax + 20]
                 urltest = temp[10 : temp.find(".jpg") + 4]
                
-                print(urltest)
+                # print(urltest)
 
                 picname = urllib.request.urlopen(urltest)
                 file = io.BytesIO(picname.read())
@@ -86,11 +86,11 @@ def cover_crawler(title):
         
 class GameCreateView(LoginRequiredMixin, View): 
     def get(self, request, *args, **kwargs): 
-        print(request.user.username)
-        try:
-            print(request.user)
-        except:
-            print('não achei')
+        # print(request.user.username)
+        # try:
+        #     print(request.user)
+        # except:
+        #     print('não achei')
         context = { 'formularioGame': NewGameForm, } 
         
         return render(request, "games/registroGame.html", context) 
@@ -103,7 +103,7 @@ class GameCreateView(LoginRequiredMixin, View):
             game.owner = users.views.User.objects.get(username=request.user.username)
             # game.usuario_id = request.user
             # game.usuario_id = Usuario.objects.get(usuario_id=request.user.pk)
-            print(str(game.owner))
+            # print(str(game.owner))
             game.cover_path = cover_crawler(game.title)
             game.save() 
             # Game.objects.create(game)
@@ -124,16 +124,19 @@ class GameUpdateView(LoginRequiredMixin, View):
         return render(request, 'games/atualizaGame.html', context) 
      
     def post(self, request, pk, *args, **kwargs): 
-        pessoa = get_object_or_404(Game, pk=pk) 
-        formulario = NewGameForm(request.POST, instance=pessoa) 
-        if formulario.is_valid(): 
-            pessoa = formulario.save() 
-            pessoa.cover_path = cover_crawler(pessoa.title) 
-            pessoa.save()
-            return HttpResponseRedirect(reverse_lazy("sec-paginaProfile")) 
-        else: 
-            context = {'game': formulario, } 
-            return render(request, 'games/atualizaGame.html', context)
+        if request.POST.get("cancela-btn"):
+            pessoa = get_object_or_404(Game, pk=pk) 
+            formulario = NewGameForm(request.POST, instance=pessoa) 
+            if formulario.is_valid(): 
+                pessoa = formulario.save() 
+                pessoa.cover_path = cover_crawler(pessoa.title) 
+                pessoa.save()
+                return HttpResponseRedirect(reverse_lazy("sec-paginaProfile")) 
+            else: 
+                context = {'game': formulario, } 
+                return render(request, 'games/atualizaGame.html', context)
+        
+        return HttpResponseRedirect(reverse_lazy("sec-paginaProfile"))
         
 class GameDeleteView(LoginRequiredMixin, View): 
     def get(self, request, pk, *args, **kwargs): 

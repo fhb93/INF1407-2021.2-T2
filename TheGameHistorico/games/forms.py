@@ -15,8 +15,21 @@ class NewGameForm(forms.ModelForm):
         model=games.models.Game
         fields = '__all__'
         exclude = ('cover_path',)
+        labels = {
+            "title" : "Título",
+            "developer" : "Desenvolvedor",
+            "publisher" : "Publicador",
+            "time_playing" : "Tempo jogando",
+            "time_completion": "Quando completei",
+            "platform" : "Plataforma",
+        }
+        
         
     username = forms
+    
+    # class Media:
+    #     js = ('games/js/script.js',)
+    
     # Titulo_do_jogo = model.fields[0]#forms.CharField(required=True)
     # Desenvolvedor = forms.CharField(required=False)
     # Publicador = forms.CharField(required=False)

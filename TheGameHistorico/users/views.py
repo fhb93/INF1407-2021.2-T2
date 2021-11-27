@@ -1,18 +1,14 @@
 from django.contrib import messages
-from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
 from django.http import JsonResponse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls.base import reverse_lazy
 from django.views.generic.base import View 
-from django.views.generic.detail import SingleObjectTemplateResponseMixin
-from django.views.generic.edit import UpdateView, CreateView, BaseUpdateView
+
 
 from games import views
 import games
-from users import forms, models
 from users.forms import NewUserForm, BioForm
 from users.models import User, Bio
 
@@ -170,7 +166,7 @@ def paginaProfile(request):
             games = views.listGames(request)
             bio = showUserBio(request)
             context = { 'games': games, 'bio' : bio} 
-            print(bio)
+            # print(bio)
             return render(request,'users/paginaProfile.html', context)     
     
     return render(request, 'users/paginaProfile.html')

@@ -8,11 +8,12 @@
 <body> 
     <h3>Sua Lista Pessoal de Jogos</h3> 
     <table class="table text-light"> 
-        <tr><th>Título</th><th>Desenvolvedor</th><th>Publicadora</th><th>Plataforma</th><th>Ações</th></tr> 
+        <tr><th>Título</th><th>Tempo de Jogo</th><th>Status</th><th>Plataforma</th><th>Conclusão</th><th>Ações</th></tr> 
         {% if games %}
         {% for g in games %} 
             <tr> 
-                <td>{{ g.title }}</td><td>{{g.developer}}</td><td>{{ g.publisher }}</td><td>{{ g.get_platform_display }}</td>
+                <td>{{ g.title }}</td><td>{{g.time_playing}}</td><td>{{ g.get_status_display }}</td><td>{{ g.get_platform_display }}</td>
+                <td>{% if g.status != "opt1" %}{{ g.date_completion }}{% else %}{{ g.get_status_display }}{% endif%}</td>
                 <td><a href="{% url 'atualizar-jogo' pk=g.id %}">Atualizar</a>
                 	<a href="{% url 'remover-jogo' pk=g.id %}">Remover</a>
                 </td> 

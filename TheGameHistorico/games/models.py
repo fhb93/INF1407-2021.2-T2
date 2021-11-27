@@ -1,5 +1,10 @@
+from _datetime import date
+
 from django.db import models
+import django.utils.timezone
+
 from users.models import User 
+
 
 # Create your models here.
 class Game(models.Model):
@@ -21,7 +26,12 @@ class Game(models.Model):
         ('opt3','Principal + alguns Extras'), 
         ('opt4','Complecionista'),
         )
+
+    
     status=models.CharField(max_length=100, choices = CHOICES, default='opt1')
+    
+    time_completion = models.DateField(default= django.utils.timezone.now, null=True)
+    
     cover_path=models.CharField(max_length=254, null=True)
     PLATS = (
         ('opt0', 'Unlisted'),
