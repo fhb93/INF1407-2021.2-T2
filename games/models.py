@@ -28,7 +28,7 @@ class Game(models.Model):
         )
 
     
-    status=models.CharField(max_length=100, choices = CHOICES, default='opt1')
+    status=models.CharField(max_length=100, choices = CHOICES, default='opt1', null=True)
     
     time_completion = models.DateField(default= django.utils.timezone.now, null=True)
     
