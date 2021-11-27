@@ -99,7 +99,7 @@ class GameCreateView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs): 
         formulario = NewGameForm(request.POST)
         
-        print(formulario)
+        # print(formulario)
         if formulario.is_valid(): 
             game = formulario.save(commit=False)
             game.owner = users.views.User.objects.get(username=request.user.username)
@@ -131,7 +131,7 @@ class GameUpdateView(LoginRequiredMixin, View):
         return render(request, 'games/atualizaGame.html', context) 
      
     def post(self, request, pk, *args, **kwargs): 
-        if request.POST.get("cancela-btn"):
+        if request.POST.get("cancela-btn") == False:
             pessoa = get_object_or_404(Game, pk=pk) 
             formulario = NewGameForm(request.POST, instance=pessoa) 
             if formulario.is_valid(): 
