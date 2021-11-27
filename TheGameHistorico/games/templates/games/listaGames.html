@@ -13,7 +13,7 @@
         {% for g in games %} 
             <tr> 
                 <td>{{ g.title }}</td><td>{{g.time_playing}}</td><td>{{ g.get_status_display }}</td><td>{{ g.get_platform_display }}</td>
-                <td>{% if g.status != "opt1" %}{{ g.time_completion }}{% else %}{{ g.get_status_display }}{% endif%}</td>
+                <td>{% if g.status != "opt1" %}{{ g.time_completion }}{% else %}{{ g.get_status_display }}{% endif %}</td>
                 <td><a href="{% url 'atualizar-jogo' pk=g.id %}">Atualizar</a>
                 	<a href="{% url 'remover-jogo' pk=g.id %}">Remover</a>
                 </td> 
