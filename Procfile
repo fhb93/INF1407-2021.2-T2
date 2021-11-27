@@ -1,2 +1,2 @@
-release: python TheGameHistorico/manage.py migrate
-web: gunicorn --pythonpath TheGameHistorico TheGameHistorico.wsgi --log-file - 
+release: python thegamehistorico/manage.py migrate
+web: gunicorn --pythonpath thegamehistorico thegamehistorico.wsgi --log-file - 
