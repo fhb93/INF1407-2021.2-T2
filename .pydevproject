@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse-pydev version="1.0"?><pydev_project>
+    <pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">Default</pydev_property>
+    <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python interpreter</pydev_property>
+    <pydev_variables_property name="org.python.pydev.PROJECT_VARIABLE_SUBSTITUTION">
+        <key>DJANGO_MANAGE_LOCATION</key>
+        <value>manage.py</value>
+        <key>env_var:MAIL</key>
+        <value>/var/mail/root</value>
+        <key>env_var:SUDO_GID</key>
+        <value>20</value>
+        <key>env_var:USERNAME</key>
+        <value>root</value>
+        <key>env_var:LC_CTYPE</key>
+        <value>UTF-8</value>
+        <key>env_var:APP_ICON_8778</key>
+        <value>../Resources/Eclipse.icns</value>
+        <key>env_var:SUDO_USER</key>
+        <value>felipe</value>
+        <key>PY</key>
+        <value>39</value>
+        <key>env_var:SHELL</key>
+        <value>/bin/sh</value>
+        <key>env_var:PATH</key>
+        <value>/opt/anaconda3/bin:/opt/anaconda3/condabin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/opt/local/bin:/opt/local/sbin:/Applications/SWI-Prolog.app/Contents/swipl/lib/jpl.jar:/Applications/SWI-Prolog.app/Contents/swipl/bin:/anaconda2/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Xamarin Workbooks.app/Contents/SharedSupport/path-bin</value>
+        <key>env_var:LOGNAME</key>
+        <value>root</value>
+        <key>env_var:SUDO_COMMAND</key>
+        <value>./eclipse</value>
+        <key>env_var:JAVA_STARTED_ON_FIRST_THREAD_8778</key>
+        <value>1</value>
+        <key>env_var:USER</key>
+        <value>root</value>
+        <key>env_var:TERM</key>
+        <value>xterm-256color</value>
+        <key>env_var:SUDO_UID</key>
+        <value>501</value>
+        <key>env_var:SSH_AUTH_SOCK</key>
+        <value>/private/tmp/com.apple.launchd.phnyOy2qcm/Listeners</value>
+        <key>env_var:HOME</key>
+        <value>/Users/felipe</value>
+        <key>env_var:__CF_USER_TEXT_ENCODING</key>
+        <value>0x0:0:0</value>
+    </pydev_variables_property>
+</pydev_project>
