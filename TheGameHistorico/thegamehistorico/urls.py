@@ -25,7 +25,7 @@ from django.views.generic.edit import UpdateView
 
 import games
 import users
-thegamehistoricofrom . import views
+from . import views
 
 
 urlpatterns = [
