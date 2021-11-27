@@ -40,7 +40,7 @@ urlpatterns = [
     path('games/listar/', games.views.GameListView.as_view(), name='lista-games'), 
     path('templates/', views.homeSec, name='nav-bar-home'),
     path('accounts/users/', users.views.RegisterNewUserView.as_view(), name = 'sec-registro'),
-    
+    path('sobre/', views.sobre, name='sobre-o-site'),
     path('exibeCharsRest/', users.views.exibeCharsRestantes, name='exibeCharsRest'),
     path('verificaUsername/', users.views.verificaUsername, name='verificaUsername'),
     path('accounts/login/', LoginView.as_view(template_name='users/login.html'), name='sec-login',), # was LoginView.as_view(template_name='users/login.html', )
