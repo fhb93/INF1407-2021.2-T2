@@ -43,9 +43,9 @@ Usuários não cadastrados podem apenas fazer buscas e visualizar os games e dad
 - Fazer uma conta
 	- Digitar um username válido (que ainda está disponível)
 	- Digitar e confirmar senha (a senha precisa seguir algumas regras, conferir no settings do app)
-	- Se quiser, digitar uma bio de 150 caracteres
+	- Email (pode ser fictício)
 	- Ao confirmar, o site vai para a tela de Login
-	- Ao logar, o usuário tem a opção e atualizar a bio, caso não tenha feito no cadastro, o botão fica na barra superior do site
+	- Ao logar, o usuário tem a opção de completar o cadastro com uma bio, o botão fica na barra superior do site
 	- Depois de logado, o usuário pode trocar a senha, clicando no botão presente na barra superior do site
 - Incluir um jogo
 	- Na visão da lista pessoal clicar em Acrescentar um Jogo
