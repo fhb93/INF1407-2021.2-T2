@@ -32,9 +32,32 @@ Usuários não cadastrados podem apenas fazer buscas e visualizar os games e dad
 - Usuários visitantes podem visualizar todos os jogos (clicando no botão Buscar sem digitar um título) ou buscar por um jogo específico (digitando um título e clicando no botão Buscar)
 	- Para fins de demonstração, cada jogo exibe apenas dados de Título, Desenvolvedor e Publicador	
 - Cadastro de Usuários usa Ajax para checar se já existe o username
-- Atualização de bio usa Ajax para indicar quantos caracteres foram digitados
+- Na página de Atualização de Bio, usa-se Ajax para indicar quantos caracteres foram digitados
 
 ### O que não foi desenvolvido
 - Sistema de Resenhas
 	- Usuários com cadastro podem publicar e atualizar notas e resenhas de jogos públicas (visitantes podem visualizar)
 - Estatísticas anonimizadas gerais para visitantes
+
+### Para Testar (Manual de Usuário)
+- Fazer uma conta
+	- Digitar um username válido (que ainda está disponível)
+	- Digitar e confirmar senha (a senha precisa seguir algumas regras, conferir no settings do app)
+	- Se quiser, digitar uma bio de 150 caracteres
+	- Ao confirmar, o site vai para a tela de Login
+	- Ao logar, o usuário tem a opção e atualizar a bio, caso não tenha feito no cadastro, o botão fica na barra superior do site
+	- Depois de logado, o usuário pode trocar a senha, clicando no botão presente na barra superior do site
+- Incluir um jogo
+	- Na visão da lista pessoal clicar em Acrescentar um Jogo
+	- Inserir os dados atentando para Título, Desenvolvedor e Publicadora (campos obrigatórios)
+	- Clicar no botão de confirmação (Essa operação pode demorar alguns segundos, pois o site busca a capa do jogo para salvar na plataforma)
+- Atualizar ou remover um jogo
+	- Clicar no botão referente na linha do jogo desejado, na lista pessoal
+- Logout
+	- Clicar no botão de Logout no canto superior direito
+- Reset da senha via email
+	- Seguir os passos dados em aula, capturando o link enviado pela console do IDE
+- Botão Buscar
+	- Sem necessidade de cadastro
+	- Com título digitado: O site busca pelo jogo com o título digitado ou um título aproximado
+	- Sem título: O site exibe todos os jogos da plataforma
