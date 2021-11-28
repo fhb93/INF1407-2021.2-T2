@@ -39,7 +39,7 @@ Usuários não cadastrados podem apenas fazer buscas e visualizar os games e dad
 	- Usuários com cadastro podem publicar e atualizar notas e resenhas de jogos públicas (visitantes podem visualizar)
 - Estatísticas anonimizadas gerais para visitantes
 
-### Para Testar (Manual de Usuário)
+### Para Testar (Manual do Usuário)
 - Fazer uma conta
 	- Digitar um username válido (que ainda está disponível)
 	- Digitar e confirmar senha (a senha precisa seguir algumas regras, conferir no settings do app)
